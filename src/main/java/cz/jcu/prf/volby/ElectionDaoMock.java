@@ -38,7 +38,7 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public String[] getCandidatesId(int voteDate) {
+    public String[] getCandidatesId(int voteDateId) {
         String[] a = new String[]{"132","123213","4543",};
         return a;
     }

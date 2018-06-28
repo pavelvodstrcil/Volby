@@ -83,7 +83,7 @@ public class ElectionDaoImplementaion implements ElectionDao{
     }
 
     @Override
-    public String[] getCandidatesId(int voteDate) {
+    public String[] getCandidatesId(int voteDateId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

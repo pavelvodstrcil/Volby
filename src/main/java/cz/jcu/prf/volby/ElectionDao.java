@@ -40,10 +40,10 @@ public interface ElectionDao {
     
     /**
      * Vrati id kandidatu.
-     * @param voteDate - datum voleb
+     * @param voteDateId - id data voleb
      * @return pole(string) - seznam id kandidatu 
      */
-    public String[] getCandidatesId(int voteDate);  
+    public String[] getCandidatesId(int voteDateId);  
     
     /**
      * Vrati jmeno kandidata
