@@ -6,9 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -76,6 +73,7 @@ public class ElectionDaoImplementaion implements ElectionDao{
             rs.next();
             result[0] = rs.getString(4);
             result[1] = rs.getString(5);
+            con.close();
             return result;
 
         } catch (SQLException ex) {
