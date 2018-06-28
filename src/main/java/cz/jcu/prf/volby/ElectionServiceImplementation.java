@@ -6,6 +6,7 @@
 package cz.jcu.prf.volby;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,9 +31,43 @@ public class ElectionServiceImplementation implements ElectionService{
         candidateVotes = new HashMap<>();
         candidates = new ArrayList<>();
         //Populate candidates
-        //...
-        
-        
+    
+        String[] pomN = ElectionDao.getCandidateName(2018);
+        System.out.println("ARRAY:" + Arrays.toString(pomN));
+        //FOR DATABASE ERROR, TEST!!
+        if (pomN[0].equals("3")){
+            System.out.println("DATABASE LOAD CANDIDATE ERROR");
+            //DATABASE ERROR TEST
+                candidates.add(new Candidate(0, "Základní", "Test", 0));
+                candidates.add(new Candidate(1, "Strana", "Zelených", 0));
+                candidates.add(new Candidate(2, "Strana", "Modrých", 0));
+        }
+        int sizeCandi = pomN.length;
+        String[] candiNames=null;
+        String candiVote="0";
+        for (int i = 0; i < sizeCandi; i++) {
+            if (pomN[i]!=null){
+                if (ElectionDao!=null)
+                        if(ElectionDao.getCandidateName(Long.parseLong(pomN[i]))!=null ||
+                                !ElectionDao.getCandidateName(Long.parseLong(pomN[i]))[0].equals("3")){
+                            candiNames = ElectionDao.getCandidateName(i);
+                }else{
+                    candiNames = new String[]{"", ""};
+                }
+                if (ElectionDao!=null) 
+                        if(ElectionDao.getCandidateVotes(Long.parseLong(pomN[i]), 2018)!=null){
+                            candiVote = ElectionDao.getCandidateVotes(Long.parseLong(pomN[i]), 2018);
+                }else{
+                    candiVote = "0";
+                }
+
+            System.out.println("NAMES: " + Arrays.toString(candiNames));
+            System.out.println("VOTES: " + candiVote);
+            
+            candidates.add(new Candidate(Long.parseLong(pomN[i]), candiNames[i], candiNames[i], Integer.valueOf(candiVote)));
+            }
+        }
+
         this.candidates.forEach((candidate) -> {
             candidateVotes.put(candidate.getID(), 0);
         });
