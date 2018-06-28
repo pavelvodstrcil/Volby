@@ -10,9 +10,11 @@ public class DatabaseConnect {
     private Statement st;
     private ResultSet rs;
 
+    /*
     public static void main(String[] args) {
          DatabaseConnect pokus = new DatabaseConnect(); 
     }
+    */
     
     public DatabaseConnect() {
         try {

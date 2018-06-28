@@ -6,38 +6,43 @@
 package cz.jcu.prf.volby;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
  *
  * @author User
+ * 
  */
 public class ElectionWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ElectionWindow
-     */
+    
     private int height = 10;
-    public List<Candidate> candi;
+    private List<Candidate> candi;
     private ButtonGroup candiGroup = new ButtonGroup();
     
     Person loggedPerson;
-    
-    
     LoginWindow lw;
-    ElectionServiceMock esm;
-    
+    ElectionService esm;
+    /**
+     * Creates new form ElectionWindow
+     */
     public ElectionWindow(LoginWindow lw) {
         initComponents();
         if (lw!=null)
             this.lw = lw;
         esm = new ElectionServiceMock();
+       
         
          addWindowListener(exitListener); //REGISTER LISTENER
          
@@ -71,6 +76,7 @@ public class ElectionWindow extends javax.swing.JFrame {
         for(int i = 0; i < candi.size(); i++)
         {
             JRadioButton button1 = new JRadioButton(candi.get(i).getFullName());
+            button1.setName(Long.toString(candi.get(i).getID()));
             button1.setSize(300, 18);
             button1.setFont(f1);
             button1.setLocation(5 ,height );
@@ -114,6 +120,11 @@ public class ElectionWindow extends javax.swing.JFrame {
         surnameLabel.setText("jLabel2");
 
         voteButton.setText("Hlasovat");
+        voteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout candiPanelLayout = new javax.swing.GroupLayout(candiPanel);
         candiPanel.setLayout(candiPanelLayout);
@@ -171,40 +182,30 @@ public class ElectionWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void voteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voteButtonActionPerformed
+        // projít všechny prvky ve skupině voličů (zaškrtávátek)
+        for (Enumeration<AbstractButton> buttons = candiGroup.getElements(); buttons.hasMoreElements();) {
+            // přiřadit tlačítko
+            AbstractButton button = buttons.nextElement();
+            // pokud je nějaký volič vybraný, toho chceme volit
+            if (button.isSelected()) {
+                try {
+                    // pomocí tlačítka si vrať ID vybraného kandidáta
+                    esm.vote(loggedPerson.getID(), Long.parseLong(button.getName()));
+                    // zobraz okno o potvrzení
+                    JOptionPane.showMessageDialog(this, "Váš hlas byl odevzdán!", "Odevzdáno", JOptionPane.DEFAULT_OPTION);
+                    return;
+                } catch (DuplicateVoteException ex) {
+                    Logger.getLogger(ElectionWindow.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NotFoundException ex) {
+                    Logger.getLogger(ElectionWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ElectionWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ElectionWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ElectionWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ElectionWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        JOptionPane.showMessageDialog(this, "Nikdo nebyl zvolen", "Varování", JOptionPane.WARNING_MESSAGE);
+        return;
+    }//GEN-LAST:event_voteButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ElectionWindow(null).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel candiPanel;
