@@ -51,12 +51,12 @@ public class ResultsWindow extends javax.swing.JFrame {
         addWindowListener(exitListener); //REGISTER LISTENER
         
     }
-    
+    /*
     public static void main(String[] args) {
         ResultsWindow k = new ResultsWindow(null);
         k.setVisible(true);
     }
-    
+    */
     public void insertBar(int pocetHlasu){
         JPanel wrapPanel = new JPanel();
             wrapPanel.setPreferredSize(new Dimension(180, 450));
