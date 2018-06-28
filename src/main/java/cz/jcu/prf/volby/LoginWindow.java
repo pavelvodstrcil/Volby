@@ -110,7 +110,7 @@ public class LoginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        long res = ele.authenticateUser(loginField.getText(), passwordField.getPassword().toString());
+        long res = ele.authenticateUser(loginField.getText(), new String(passwordField.getPassword()));
         switch((int)res){
             case 1:  ElectionWindow e = new ElectionWindow(this);
                      e.setVisible(true);
