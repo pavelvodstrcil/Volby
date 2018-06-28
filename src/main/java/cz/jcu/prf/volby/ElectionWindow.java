@@ -108,6 +108,7 @@ public class ElectionWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Volební okno");
+        setResizable(false);
 
         logoutButton.setText("Odhlásit");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
