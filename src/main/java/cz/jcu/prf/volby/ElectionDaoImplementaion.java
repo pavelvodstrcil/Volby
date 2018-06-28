@@ -135,9 +135,22 @@ public class ElectionDaoImplementaion implements ElectionDao {
     }
 
     @Override
-    public String getCandidateVotes(long candId, int voteDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public int getCandidateVotes(long candId, int voteDate) {
+         int result;
+     try {
+
+         con = DriverManager.getConnection(URL, USER, PASSWORD);
+         st = con.createStatement();
+         rs = st.executeQuery("SELECT COUNT(id) AS NumberOfVotes FROM Hlasy WHERE idKandidat='" + candId + "' AND datum='" + voteDate + "'");
+         rs.next();
+         return result = rs.getInt(1);
+
+     } catch (SQLException ex) {
+
+         return result = ERROR;
+     }
+}
+    
 
     @Override
     public String currentVoteDate() {

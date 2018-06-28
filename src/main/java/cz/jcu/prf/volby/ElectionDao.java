@@ -58,9 +58,9 @@ public interface ElectionDao {
      * Vrati pocet hlasu kandidata.
      * @param candId - id vybraneho kandidata
      * @param voteDate - datum voleb(rok)
-     * @return seznam id volicu(string)  -- pokud vrati pouze 0x0 - chyba databaze
+     * @return pocet hlasu kandidatu
      */
-    public String getCandidateVotes(long candId, int voteDate);
+    public int getCandidateVotes(long candId, int voteDate);
     
     /**
      * Vrati nejnovejsi datum volebniho obdobi.
