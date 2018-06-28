@@ -32,41 +32,34 @@ public class ElectionServiceImplementation implements ElectionService{
         candidates = new ArrayList<>();
         //Populate candidates
     
-        String[] pomN = ElectionDao.getCandidateName(2018);
-        System.out.println("ARRAY:" + Arrays.toString(pomN));
+        String[] candidatesId = ElectionDao.getCandidatesId(1);
+        //System.out.println("ARRAY:" + Arrays.toString(candidatesId));
         //FOR DATABASE ERROR, TEST!!
-        if (pomN[0].equals("3")){
+        if (candidatesId[0].equals("3")){
             System.out.println("DATABASE LOAD CANDIDATE ERROR");
             //DATABASE ERROR TEST
                 candidates.add(new Candidate(0, "Základní", "Test", 0));
                 candidates.add(new Candidate(1, "Strana", "Zelených", 0));
                 candidates.add(new Candidate(2, "Strana", "Modrých", 0));
         }
-        int sizeCandi = pomN.length;
-        String[] candiNames=null;
-        String candiVote="0";
+        int sizeCandi = candidatesId.length;
+        String[] candiNames= new String[]{"", ""};
+        int candiVote= 0;
+        
         for (int i = 0; i < sizeCandi; i++) {
-            if (pomN[i]!=null){
-                if (ElectionDao!=null)
-                        if(ElectionDao.getCandidateName(Long.parseLong(pomN[i]))!=null ||
-                                !ElectionDao.getCandidateName(Long.parseLong(pomN[i]))[0].equals("3")){
-                            candiNames = ElectionDao.getCandidateName(i);
-                }else{
-                    candiNames = new String[]{"", ""};
-                }
-                if (ElectionDao!=null) 
-                        if(ElectionDao.getCandidateVotes(Long.parseLong(pomN[i]), 2018)!=null){
-                            candiVote = ElectionDao.getCandidateVotes(Long.parseLong(pomN[i]), 2018);
-                }else{
-                    candiVote = "0";
-                }
-
-            System.out.println("NAMES: " + Arrays.toString(candiNames));
-            System.out.println("VOTES: " + candiVote);
             
-            candidates.add(new Candidate(Long.parseLong(pomN[i]), candiNames[i], candiNames[i], Integer.valueOf(candiVote)));
+                //System.out.println("PARSE:" + Long.parseLong(candidatesId[i]));
+                //System.out.println("TEST_NAME: " + Arrays.toString(ElectionDao.getCandidateName(Long.parseLong(candidatesId[i]))));
+                candiNames = ElectionDao.getCandidateName(Long.parseLong(candidatesId[i]));
+                candiVote = ElectionDao.getCandidateVotes(Long.parseLong(candidatesId[i]), 2018);
+                
+
+                //System.out.println("NAMES: " + Arrays.toString(candiNames));
+                //System.out.println("VOTES: " + candiVote);
+            
+            candidates.add(new Candidate(Long.parseLong(candidatesId[i]), candiNames[0], candiNames[1], candiVote));
             }
-        }
+        
 
         this.candidates.forEach((candidate) -> {
             candidateVotes.put(candidate.getID(), 0);
@@ -81,6 +74,9 @@ public class ElectionServiceImplementation implements ElectionService{
     
     @Override
     public void vote(long personID, long candidateID) throws DuplicateVoteException, NotFoundException {
+        if (ElectionDao.verifyVote((int)personID, 2018)==4){
+            throw new DuplicateVoteException();
+        }
         if(votedPersons.contains(personID)){
             throw new DuplicateVoteException();
         }else if(!candidateVotes.containsKey(candidateID)){
@@ -88,6 +84,7 @@ public class ElectionServiceImplementation implements ElectionService{
         }else{
             candidateVotes.put(candidateID, candidateVotes.get(candidateID)+1);
             votedPersons.add(personID); //přidat toho člověka, který už hlasoval
+            ElectionDao.vote((int)personID, (int)candidateID, 2018);
         }
     }
 
