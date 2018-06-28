@@ -8,6 +8,15 @@ import java.util.Date;
  */
 public class ElectionDaoMock implements ElectionDao{
 
+    public static  ElectionDaoMock self = null;
+    private ElectionDaoMock(){};
+    
+     public static ElectionDaoMock getInstance( ) {
+      if(self == null) {
+         self = new ElectionDaoMock();
+      }
+      return self;
+   }
 
     @Override
     public int verifyUser(String hashOP, String passwd) {

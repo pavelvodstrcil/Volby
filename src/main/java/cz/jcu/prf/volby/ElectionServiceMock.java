@@ -21,6 +21,8 @@ public class ElectionServiceMock implements ElectionService{
     private Set<Long> votedPersons;
     private Map<Long, Integer> candidateVotes;
     private List<Candidate> candidates;
+     ElectionDaoMock ElectionDao = ElectionDaoMock.getInstance();
+ 
    // List<Candidate> candidates = Arrays.asList(new Candidate(1), new Candidate(2), new Candidate(3));
  
     public ElectionServiceMock(List<Candidate> candidates){
@@ -43,6 +45,7 @@ public class ElectionServiceMock implements ElectionService{
     }
     
    public long authenticateUser(String documentNumber, String password){
+       
        return 0;
    }
    
