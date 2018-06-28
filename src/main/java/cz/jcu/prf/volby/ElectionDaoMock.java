@@ -31,19 +31,21 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public String[] getCandidates(Date voteDate) {
-        String[] a = new String[]{"132","123213","121234","4543","542543"};
+    public String[] getCandidatesId(Date voteDate) {
+        String[] a = new String[]{"132","123213","4543",};
         return a;
     }
 
     @Override
     public String[][] getCandidatesNames(String[] candId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[][] a = new String[][]{{"132","John","Doe"},{"123213","John2","Doe2"},{"4543","John3","Doe3"}};
+        return a;
     }
 
     @Override
-    public String[] getCandidateVote(String candId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String[][] getCandidatesVote(String candId) {
+        String[][] a = new String[][]{{"132","41"},{"123213","54"},{"4543","104"}};
+        return a;
     }
     
 }
