@@ -1,3 +1,8 @@
+package cz.jcu.prf.volby;
+
+import cz.jcu.prf.volby.ElectionService;
+import cz.jcu.prf.volby.DuplicateVoteException;
+import cz.jcu.prf.volby.Candidate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

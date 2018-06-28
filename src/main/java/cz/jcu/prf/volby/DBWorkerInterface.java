@@ -1,3 +1,5 @@
+package cz.jcu.prf.volby;
+
 
 
 import java.lang.reflect.Array;
