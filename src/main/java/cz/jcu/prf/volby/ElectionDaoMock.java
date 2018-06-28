@@ -32,7 +32,8 @@ public class ElectionDaoMock implements ElectionDao{
 
     @Override
     public String[] getCandidates(Date voteDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[] a = new String[]{"132","123213","121234","4543","542543"};
+        return a;
     }
 
     @Override
