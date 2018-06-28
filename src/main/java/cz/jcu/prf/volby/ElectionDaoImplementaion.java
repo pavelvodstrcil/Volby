@@ -13,7 +13,7 @@ import java.sql.Statement;
  */
 public class ElectionDaoImplementaion implements ElectionDao {
 
-    private static final String URL = "jdbc:mysql://www.db4free.net/phpMyAdmin/db_structure.php?server=1&db=volby_2018?verifyServerCertificate=false&useSSL=true";
+    private static final String URL = "jdbc:mysql://db4free.net:3306/volby_2018?verifyServerCertificate=false&useSSL=true";
     private static final String USER = "babis_2018";
     private static final String PASSWORD = "capihnizdo";
 
