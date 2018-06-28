@@ -2,11 +2,9 @@ package cz.jcu.prf.volby;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 /**
  *
@@ -52,7 +50,17 @@ public class ElectionDaoImplementaion implements ElectionDao {
 
     @Override
     public int vote(int personId, int candId, int voteDate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+                con = DriverManager.getConnection(URL, USER, PASSWORD);
+                st = con.createStatement();
+
+                    st.executeUpdate("INSERT INTO Hlasy (idOsoby, idKandidat, datum) VALUES ('" + personId + "', '" + candId + "', '" + voteDate + "')");
+                    return TRUE;
+                  
+            } catch (SQLException ex) {
+                System.out.println(ex);
+                return ERROR;
+            }
     }
 
     @Override
