@@ -1,5 +1,9 @@
 package cz.jcu.prf.volby;
 
+import javafx.scene.control.PasswordField;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
@@ -30,7 +34,7 @@ public class LoginWindow extends javax.swing.JFrame {
         resultsButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Přihlášení");
@@ -57,7 +61,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
         jLabel2.setText("Heslo:");
 
-        jPasswordField1.setText("jPasswordField1");
+        passwordField.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,7 +78,7 @@ public class LoginWindow extends javax.swing.JFrame {
                         .addGap(34, 34, 34)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(loginField, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1))
+                    .addComponent(passwordField))
                 .addGap(114, 114, 114))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,7 +99,7 @@ public class LoginWindow extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,14 +112,15 @@ public class LoginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        long res = ele.authenticateUser("shfbahs", "sfjgaf");
+        long res = ele.authenticateUser(loginField.getText(), passwordField.getPassword().toString());
         switch((int)res){
             case 1:  ElectionWindow e = new ElectionWindow();
                      e.setVisible(true);
+                     this.setVisible(false);
                      break;
-            case 2:  
+            case 2:  JOptionPane.showMessageDialog(new JFrame(),"Vámi zadané údaje se neshodůjí s údaji v databázi.","Špatně zadané údaje",JOptionPane.WARNING_MESSAGE);
                      break;
-            case 3: 
+            case 3: JOptionPane.showMessageDialog(new JFrame(),"Nebyo možné provést přihlášení","Chyba databáze",JOptionPane.WARNING_MESSAGE);
                      break;
         }
         if(ele.authenticateUser("hsfagf", "sggas") == 1){
@@ -128,6 +133,7 @@ public class LoginWindow extends javax.swing.JFrame {
     private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
        ResultsWindow r = new ResultsWindow();
        r.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_resultsButtonActionPerformed
 
     /**
@@ -168,9 +174,9 @@ public class LoginWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton loginButton;
     private javax.swing.JTextField loginField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton resultsButton;
     // End of variables declaration//GEN-END:variables
 }
