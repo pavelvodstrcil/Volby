@@ -21,7 +21,7 @@ public interface ElectionDao {
      * @param voteDate - datum voleb
      * @return 1-vse probehlo spravne 3-chyba databaze
      */
-    public int vote(String personId, String candId, int voteDate);
+    public int vote(int personId, int candId, int voteDate);
     
     /**
      * Overi zda volic volil.
@@ -29,7 +29,7 @@ public interface ElectionDao {
      * @param date - datum voleb
      * @return 1-volic nehlasoval 4-volic hlasoval 3-chyba databaze
      */
-    public int verifyVote(String personId, int date);
+    public int verifyVote(int personId, int date);
         
     /**
      * Vrati udaje o volici.
@@ -50,12 +50,12 @@ public interface ElectionDao {
      * @param candId - id vybraneho kandidata
      * @return pole(string) - jmeno, prijmeni
      */
-    public String[] getCandidateName(String candId);
+    public String[] getCandidateName(long candId);
     
     /**
      * Vrati pocet hlasu kandidata.
      * @param candId - id vybraneho kandidata
      * @return pocet hlasu
      */
-    public String getCandidateVotes(String candId);
+    public String getCandidateVotes(long candId);
 }

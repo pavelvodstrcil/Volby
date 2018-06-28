@@ -22,12 +22,12 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public int vote(String personId, String candId,int voteDate) {
+    public int vote(int personId, int candId,int voteDate) {
         return 1;
     }
 
     @Override
-    public int verifyVote(String personId, int date) {
+    public int verifyVote(int personId, int date) {
         return 1;
     }
 
@@ -44,14 +44,13 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public String[] getCandidateName(String candId) {
+    public String[] getCandidateName(long candId) {
         String[] a = new String[]{"John","Doe"};
         return a;
     }
 
     @Override
-    public String getCandidateVotes(String candId) {
-        
+    public String getCandidateVotes(long candId) {     
         return "21";
     }
     
