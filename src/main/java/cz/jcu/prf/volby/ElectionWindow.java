@@ -42,8 +42,7 @@ public class ElectionWindow extends javax.swing.JFrame {
         if (lw!=null)
             this.lw = lw;
         esm = new ElectionServiceMock();
-       
-        
+
          addWindowListener(exitListener); //REGISTER LISTENER
          
          //
@@ -196,14 +195,15 @@ public class ElectionWindow extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Váš hlas byl odevzdán!", "Odevzdáno", JOptionPane.DEFAULT_OPTION);
                     return;
                 } catch (DuplicateVoteException ex) {
-                    Logger.getLogger(ElectionWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "Daná osoba byla zvolena dvakrát vámi.", "Varování", JOptionPane.WARNING_MESSAGE);
+                    return;
                 } catch (NotFoundException ex) {
-                    Logger.getLogger(ElectionWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "Vybraná osoba nebyla naleznuta", "Varování", JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
             }
         }
         JOptionPane.showMessageDialog(this, "Nikdo nebyl zvolen", "Varování", JOptionPane.WARNING_MESSAGE);
-        return;
     }//GEN-LAST:event_voteButtonActionPerformed
 
 

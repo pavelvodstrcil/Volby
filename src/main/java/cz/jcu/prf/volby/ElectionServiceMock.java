@@ -1,9 +1,12 @@
 package cz.jcu.prf.volby;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 
 /**
@@ -15,6 +18,7 @@ import java.util.Set;
 public class ElectionServiceMock implements ElectionService{
 
     private Set<Long> votedPersons;
+    // ID kandidáta a počet jeho hlasů
     private Map<Long, Integer> candidateVotes;
     private List<Candidate> candidates;
     private ElectionDaoMock ElectionDao = ElectionDaoMock.getInstance();
@@ -23,17 +27,18 @@ public class ElectionServiceMock implements ElectionService{
     
     public ElectionServiceMock(/*List<Candidate> candidates*/){
         //GENERATE CANDIDATES
-        candidates = new ArrayList<>();
+        votedPersons = new TreeSet<>();
+        candidateVotes = new HashMap<>();
+        this.candidates = new ArrayList<>();
+        
         candidates.add(new Candidate(0, "Jana", "Čechová", 3));
         candidates.add(new Candidate(1, "Pavel", "Vodstrčil", 2));
         candidates.add(new Candidate(2, "Tereza", "Králová", 1));
         candidates.add(new Candidate(3, "Andrian", "Polák", 0));
-        /*votedPersons = new TreeSet<>();
-        candidateVotes = new HashMap<>();
-        this.candidates = candidates;
+        
         this.candidates.forEach((candidate) -> {
             candidateVotes.put(candidate.getID(), 0);
-        });*/
+        });
     }
     
     @Override
@@ -44,6 +49,7 @@ public class ElectionServiceMock implements ElectionService{
             throw new NotFoundException();
         }else{
             candidateVotes.put(candidateID, candidateVotes.get(candidateID)+1);
+            votedPersons.add(personID); //přidat toho člověka, který už hlasoval
         }
     }
     
