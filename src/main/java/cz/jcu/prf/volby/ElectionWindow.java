@@ -55,6 +55,11 @@ public class ElectionWindow extends javax.swing.JFrame {
         setTitle("Volební okno");
 
         logoutButton.setText("Odhlásit");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
         nameLabel.setText("jLabel1");
 
@@ -96,6 +101,10 @@ public class ElectionWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+    // TODO add your handling code here:
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
