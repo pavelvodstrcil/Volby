@@ -67,7 +67,21 @@ public class ElectionDaoImplementaion implements ElectionDao{
 
     @Override
     public String[] getPerson(String hashOP) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         String[] result = new String[2];
+        try {
+
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM Osoby WHERE cisloOP='" + hashOP + "'");
+            rs.next();
+            result[0] = rs.getString(4);
+            result[1] = rs.getString(5);
+            return result;
+
+        } catch (SQLException ex) {
+            result[0] = Integer.toString(ERROR);
+            return result;
+        }
     }
 
     @Override
