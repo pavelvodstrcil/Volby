@@ -1,6 +1,7 @@
 package cz.jcu.prf.volby;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -130,6 +131,9 @@ public class LoginWindow extends javax.swing.JFrame {
        this.setEnabled(false);
     }//GEN-LAST:event_resultsButtonActionPerformed
 
+    public JTextField loginField(){
+        return loginField;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
