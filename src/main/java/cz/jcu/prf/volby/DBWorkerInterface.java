@@ -1,9 +1,8 @@
-package cz.jcu.prf.volby;
-
 
 
 import java.lang.reflect.Array;
 import java.util.Date;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -43,15 +42,28 @@ public interface DBWorkerInterface {
     /**
      * Vrati udaje o volici.
      * @param hashOP - zahashovane cislo OP volice
-     * @return  
+     * @return pole(string) - hashOP, jmeno, prijmeni
      */
-    public Array[] getPerson(String hashOP);   
+    public String[] getPerson(String hashOP);   
     
-    public Array[] getCandidates(Date voteDate);  
+    /**
+     * Vrati id kandidatu.
+     * @param voteDate - datum voleb
+     * @return list(string) - seznam id kandidatu
+     */
+    public String[] getCandidates(Date voteDate);  
     
-    public Array[] getCandidatesNames(String candId);
+    /**
+     * Vrati jmena kandidatu
+     * @param candId - id vybraneho kandidata
+     * @return pole(string) - candId, jmeno, prijmeni
+     */
+    public String[][] getCandidatesNames(String[] candId);
     
-    public Array[] getCandidateVote(String candId);
-        
-    public Array[][] getResults(Date voteDate);
+    /**
+     * Vrati pocet hlasu kandidata.
+     * @param candId - id vybraneho kandidata
+     * @return pole(string) - candId, pocetHlasu
+     */
+    public String[] getCandidateVote(String candId);
 }
