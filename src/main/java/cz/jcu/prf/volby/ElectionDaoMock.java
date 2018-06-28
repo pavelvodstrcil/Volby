@@ -1,23 +1,24 @@
 package cz.jcu.prf.volby;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author User
  */
-public class ElectionDaoMock implements ElectionDao{
+public class ElectionDaoMock implements ElectionDao {
 
-    public static  ElectionDaoMock self = null;
-    private ElectionDaoMock(){};
+    public static ElectionDaoMock self = null;
+
+    private ElectionDaoMock() {
+    }
+
+    ;
     
-     public static ElectionDaoMock getInstance( ) {
-      if(self == null) {
-         self = new ElectionDaoMock();
-      }
-      return self;
-   }
+     public static ElectionDaoMock getInstance() {
+        if (self == null) {
+            self = new ElectionDaoMock();
+        }
+        return self;
+    }
 
     @Override
     public int verifyUser(String hashOP, String passwd) {
@@ -25,7 +26,7 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public int vote(int personId, int candId,int voteDate) {
+    public int vote(int personId, int candId, int voteDate) {
         return 1;
     }
 
@@ -36,29 +37,24 @@ public class ElectionDaoMock implements ElectionDao{
 
     @Override
     public String[] getPerson(String hashOP) {
-        String[] a = new String[]{"132","John","Doe"};
+        String[] a = new String[]{"132", "John", "Doe"};
         return a;
     }
 
     @Override
     public String[] getCandidatesId(int voteDateId) {
-        String[] a = new String[]{"132","123213","4543",};
+        String[] a = new String[]{"132", "123213", "4543",};
         return a;
     }
 
     @Override
     public String[] getCandidateName(long candId) {
-        String[] a = new String[]{"John","Doe"};
+        String[] a = new String[]{"John", "Doe"};
         return a;
     }
 
     @Override
-    public int getCandidateVotes(long candId, int voteDate) {     
+    public int getCandidateVotes(long candId, int voteDate) {
         return 32;
     }
-    
-    @Override
-      public String currentVoteDate(){
-      return "34324";
-      }
 }

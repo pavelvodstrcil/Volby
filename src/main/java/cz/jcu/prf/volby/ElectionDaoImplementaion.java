@@ -150,11 +150,7 @@ public class ElectionDaoImplementaion implements ElectionDao {
          return result = ERROR;
      }
 }
+   
     
-
-    @Override
-    public String currentVoteDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
