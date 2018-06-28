@@ -14,7 +14,6 @@ public class DatabaseConnect {
          DatabaseConnect pokus = new DatabaseConnect(); 
     }
     
-    
     public DatabaseConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");

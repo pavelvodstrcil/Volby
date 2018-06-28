@@ -5,12 +5,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.sql.Wrapper;
-import javax.swing.BoxLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.text.GapContent;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,10 +25,12 @@ import javax.swing.text.GapContent;
  */
 public class ResultsWindow extends javax.swing.JFrame {
 
+    LoginWindow lw;
+    
     /**
      * Creates new form ResultsWindow
      */
-    public ResultsWindow() {
+    public ResultsWindow(LoginWindow lw) {
         initComponents();
         for (int i = 0; i < 3; i++) {
             JPanel wrapPanel = new JPanel();
@@ -61,12 +64,28 @@ public class ResultsWindow extends javax.swing.JFrame {
             wrapPanel.add(nameLabel, BorderLayout.SOUTH);
             
             barArea_jPanel.add(wrapPanel);
+            
+           
         }
+        if (lw!=null)
+            this.lw = lw; //ADD REFER
+        addWindowListener(exitListener); //REGISTER LISTENER
     }
     
     public void insertBar(){
         
     }
+    
+    WindowListener exitListener = new WindowAdapter() {
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        //Povolí předchozí okno
+        lw.setEnabled(true);
+        //Zavře okno
+        dispose();
+    }
+};
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +99,7 @@ public class ResultsWindow extends javax.swing.JFrame {
         electionTitle = new javax.swing.JLabel();
         barArea_jPanel = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         electionTitle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -148,7 +167,7 @@ public class ResultsWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ResultsWindow().setVisible(true);
+                new ResultsWindow(null).setVisible(true);
             }
         });
     }

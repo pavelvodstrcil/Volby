@@ -7,7 +7,8 @@ package cz.jcu.prf.volby;
 public class ElectionStart {
     
     public static void main(String args[]) {
-        new ResultsWindow();
+        new LoginWindow();
     }
+
     
 }

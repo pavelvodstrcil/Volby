@@ -1,13 +1,9 @@
 package cz.jcu.prf.volby;
 
-import cz.jcu.prf.volby.ElectionService;
-import cz.jcu.prf.volby.DuplicateVoteException;
-import cz.jcu.prf.volby.Candidate;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 
 /**
@@ -23,9 +19,15 @@ public class ElectionServiceMock implements ElectionService{
     private List<Candidate> candidates;
     private ElectionDaoMock ElectionDao = ElectionDaoMock.getInstance();
  
-   // List<Candidate> candidates = Arrays.asList(new Candidate(1), new Candidate(2), new Candidate(3));
  
+    
     public ElectionServiceMock(/*List<Candidate> candidates*/){
+        //GENERATE CANDIDATES
+        candidates = new ArrayList<>();
+        candidates.add(new Candidate(0, "Jana", "Čechová", 3));
+        candidates.add(new Candidate(1, "Pavel", "Vodstrčil", 2));
+        candidates.add(new Candidate(2, "Tereza", "Králová", 1));
+        candidates.add(new Candidate(3, "Andrian", "Polák", 0));
         /*votedPersons = new TreeSet<>();
         candidateVotes = new HashMap<>();
         this.candidates = candidates;
@@ -34,6 +36,7 @@ public class ElectionServiceMock implements ElectionService{
         });*/
     }
     
+    @Override
     public void vote(long personID, long candidateID) throws DuplicateVoteException,NotFoundException{
         if(votedPersons.contains(personID)){
             throw new DuplicateVoteException();
@@ -44,14 +47,17 @@ public class ElectionServiceMock implements ElectionService{
         }
     }
     
+    @Override
    public long authenticateUser(String documentNumber, String password){
       return ElectionDao.verifyUser(password, password);
    }
    
+    @Override
    public int getVotes(long candidateID){
        return candidateVotes.get(candidateID);
    }
 
+    @Override
     public List<Candidate> getCanditates() {
         return candidates;  
     }

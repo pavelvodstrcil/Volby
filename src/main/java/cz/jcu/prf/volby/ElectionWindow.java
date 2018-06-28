@@ -5,6 +5,11 @@
  */
 package cz.jcu.prf.volby;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
@@ -18,25 +23,67 @@ public class ElectionWindow extends javax.swing.JFrame {
     /**
      * Creates new form ElectionWindow
      */
-    
-    public List<Object> candi;
+    private int height = 10;
+    public List<Candidate> candi;
     private ButtonGroup candiGroup = new ButtonGroup();
     
+    Person loggedPerson;
     
-    public ElectionWindow() {
+    
+    LoginWindow lw;
+    ElectionServiceMock esm;
+    
+    public ElectionWindow(LoginWindow lw) {
         initComponents();
+        if (lw!=null)
+            this.lw = lw;
+        esm = new ElectionServiceMock();
+        
+         addWindowListener(exitListener); //REGISTER LISTENER
+         
+         //
+         candi = esm.getCanditates();
+         //TEST
+         loggedPerson = candi.get(0);
+         //set login user
+         nameLabel.setText(loggedPerson.getName());
+         surnameLabel.setText(loggedPerson.getSurname());
+         
+         generateRadioButtons();
+         
     }
+    
+    WindowListener exitListener = new WindowAdapter() {
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        //Povolí předchozí okno
+        lw.setEnabled(true);
+        //Zavře okno
+        dispose();
+    }
+};
     
     public void generateRadioButtons()
     {
+        Font  f1  = new Font(Font.SERIF, Font.PLAIN,  18);
+        
         for(int i = 0; i < candi.size(); i++)
         {
-            JRadioButton button1 = new JRadioButton(candi.get(i).toString());
+            JRadioButton button1 = new JRadioButton(candi.get(i).getFullName());
+            button1.setSize(300, 18);
+            button1.setFont(f1);
+            button1.setLocation(5 ,height );
+            height = height + 30;
+            candiPanel.add(button1);
+            
             candiGroup.add(button1);
+            System.out.println(candi.get(i).getName());
             
         }
+      
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,37 +95,57 @@ public class ElectionWindow extends javax.swing.JFrame {
 
         logoutButton = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
-        surnameWindow = new javax.swing.JLabel();
+        surnameLabel = new javax.swing.JLabel();
         voteButton = new javax.swing.JButton();
+        candiPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Volební okno");
 
         logoutButton.setText("Odhlásit");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
         nameLabel.setText("jLabel1");
 
-        surnameWindow.setText("jLabel2");
+        surnameLabel.setText("jLabel2");
 
         voteButton.setText("Hlasovat");
+
+        javax.swing.GroupLayout candiPanelLayout = new javax.swing.GroupLayout(candiPanel);
+        candiPanel.setLayout(candiPanelLayout);
+        candiPanelLayout.setHorizontalGroup(
+            candiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 269, Short.MAX_VALUE)
+        );
+        candiPanelLayout.setVerticalGroup(
+            candiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 179, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 200, Short.MAX_VALUE)
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameLabel)
-                            .addComponent(surnameWindow))
+                            .addComponent(surnameLabel))
                         .addGap(71, 71, 71)
                         .addComponent(logoutButton)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(voteButton)
-                        .addGap(185, 185, 185))))
+                        .addGap(185, 185, 185))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(candiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,15 +154,22 @@ public class ElectionWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(surnameWindow))
+                        .addComponent(surnameLabel))
                     .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(candiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addComponent(voteButton)
                 .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        lw.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,15 +201,16 @@ public class ElectionWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ElectionWindow().setVisible(true);
+                new ElectionWindow(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel candiPanel;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel nameLabel;
-    private javax.swing.JLabel surnameWindow;
+    private javax.swing.JLabel surnameLabel;
     private javax.swing.JButton voteButton;
     // End of variables declaration//GEN-END:variables
 }
