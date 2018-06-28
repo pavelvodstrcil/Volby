@@ -54,4 +54,8 @@ public class ElectionDaoMock implements ElectionDao{
         return "21";
     }
     
+    @Override
+      public String currentVoteDate(){
+      return "34324";
+      }
 }

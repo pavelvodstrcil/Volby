@@ -18,7 +18,7 @@ public interface ElectionDao {
      * Prida hlas vybranemu kandidatovi. Nastavi volicovi ze uz volil.
      * @param personId - id cislo volice
      * @param candId - id vybraneho kandidata
-     * @param voteDate - datum voleb
+     * @param voteDate - datum voleb(rok)
      * @return 1-vse probehlo spravne 3-chyba databaze
      */
     public int vote(int personId, int candId, int voteDate);
@@ -55,7 +55,14 @@ public interface ElectionDao {
     /**
      * Vrati pocet hlasu kandidata.
      * @param candId - id vybraneho kandidata
+     * @param voteDate - datum voleb(rok)
      * @return pocet hlasu
      */
     public String getCandidateVotes(long candId, int voteDate);
+    
+    /**
+     * Vrati nejnovejsi datum volebniho obdobi.
+     * @return datum nejnovejsiho volebniho obdobi
+     */
+    public String currentVoteDate();
 }
