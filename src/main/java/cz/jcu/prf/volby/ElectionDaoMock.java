@@ -1,5 +1,8 @@
 package cz.jcu.prf.volby;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author User
@@ -50,8 +53,11 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public String getCandidateVotes(long candId, int voteDate) {     
-        return "21";
+    public List getCandidateVotes(long candId, int voteDate) {     
+        List a;
+        a = new ArrayList<String>();
+        a.add("21");
+        return a;
     }
     
     @Override

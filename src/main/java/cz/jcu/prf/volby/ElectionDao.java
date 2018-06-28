@@ -1,5 +1,7 @@
 package cz.jcu.prf.volby;
 
+import java.util.List;
+
 /**
  *
  * @author User
@@ -56,9 +58,9 @@ public interface ElectionDao {
      * Vrati pocet hlasu kandidata.
      * @param candId - id vybraneho kandidata
      * @param voteDate - datum voleb(rok)
-     * @return pocet hlasu
+     * @return seznam id volicu(string)
      */
-    public String getCandidateVotes(long candId, int voteDate);
+    public List getCandidateVotes(long candId, int voteDate);
     
     /**
      * Vrati nejnovejsi datum volebniho obdobi.

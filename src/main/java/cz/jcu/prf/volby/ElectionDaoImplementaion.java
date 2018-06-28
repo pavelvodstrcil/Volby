@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  *
@@ -134,7 +135,7 @@ public class ElectionDaoImplementaion implements ElectionDao {
     }
 
     @Override
-    public String getCandidateVotes(long candId, int voteDate) {
+    public List getCandidateVotes(long candId, int voteDate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
