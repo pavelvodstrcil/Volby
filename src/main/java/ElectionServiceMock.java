@@ -37,7 +37,7 @@ public class ElectionServiceMock implements ElectionService{
         }
     }
     
-   public long autenticateUser(String documentNumber, String password){
+   public long authenticateUser(String documentNumber, String password){
        return 0;
    }
    

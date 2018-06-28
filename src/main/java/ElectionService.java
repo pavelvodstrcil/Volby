@@ -13,5 +13,5 @@ public interface ElectionService {
     
     public void vote(long personID, long candidateID) throws DuplicateVoteException, NotFoundException;
     
-    public long autenticateUser(String documentNumber, String password);
+    public long authenticateUser(String documentNumber, String password);
 }
