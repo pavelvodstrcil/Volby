@@ -40,11 +40,9 @@ public class ResultsWindow extends javax.swing.JFrame {
         
         barArea_jPanel.setLayout(new FlowLayout(FlowLayout.CENTER,40,0));
 
-        //System.out.println(totalVotes);
-        insertBar(12);
-        insertBar(105);
-        insertBar(241);
-        insertBar(142);
+        for(Candidate i:es.getCanditates()){
+            insertBar(i);
+        }
         
         if (lw!=null)
             this.lw = lw; //ADD REFER
@@ -57,12 +55,12 @@ public class ResultsWindow extends javax.swing.JFrame {
         k.setVisible(true);
     }
     */
-    public void insertBar(int pocetHlasu){
+    public void insertBar(Candidate i){
         JPanel wrapPanel = new JPanel();
             wrapPanel.setPreferredSize(new Dimension(180, 450));
             wrapPanel.setLayout(new BorderLayout());
 
-            float percent = 100/(float)totalVotes*(float)pocetHlasu;
+            float percent = 100/(float)totalVotes*(float)i.getCountVotes();
             
             //Přidá procenta nahoru
             JLabel percentageLabel = new JLabel(percent + " %");
@@ -88,7 +86,7 @@ public class ResultsWindow extends javax.swing.JFrame {
             
             //Přidá jméno kandidáta dolů
             JLabel nameLabel = new JLabel();
-            nameLabel.setText("Klement Gottwald");
+            nameLabel.setText(i.getFullName());
             nameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 15));
             nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
             wrapPanel.add(nameLabel,BorderLayout.SOUTH);
