@@ -64,15 +64,16 @@ public class ElectionDaoImplementaion implements ElectionDao{
 
     @Override
     public String[] getPerson(String hashOP) {
-         String[] result = new String[2];
+         String[] result = new String[3];
         try {
 
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM Osoby WHERE cisloOP='" + hashOP + "'");
             rs.next();
-            result[0] = rs.getString(4);
-            result[1] = rs.getString(5);
+            result[0] = rs.getString(1);
+            result[1] = rs.getString(4);
+            result[2] = rs.getString(5);
             con.close();
             return result;
 

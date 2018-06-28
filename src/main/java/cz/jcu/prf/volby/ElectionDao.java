@@ -34,7 +34,7 @@ public interface ElectionDao {
     /**
      * Vrati udaje o volici.
      * @param hashOP - zahashovane cislo OP volice
-     * @return pole(string) - hashOP, jmeno, prijmeni -- pokud vrati pouze 3 - chyba databaze
+     * @return pole(string) - id, jmeno, prijmeni -- pokud vrati pouze 3 - chyba databaze
      */
     public String[] getPerson(String hashOP);   
     
