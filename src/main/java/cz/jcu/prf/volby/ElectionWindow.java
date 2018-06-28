@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +35,7 @@ public class ElectionWindow extends javax.swing.JFrame {
     Person loggedPerson;
     LoginWindow lw;
     ElectionService esm;
+    ElectionDao ed;
     /**
      * Creates new form ElectionWindow
      */
@@ -42,13 +44,14 @@ public class ElectionWindow extends javax.swing.JFrame {
         if (lw!=null)
             this.lw = lw;
         esm = new ElectionServiceImplementation();
-
+        ed = new ElectionDaoImplementaion();
+        
          addWindowListener(exitListener); //REGISTER LISTENER
          
-         //
          candi = esm.getCanditates();
-         //TEST
-         //loggedPerson = candi.get(0);
+         //Populate logged person
+         String[] personParam = ed.getPerson(lw.loginField().getText());
+         loggedPerson = new Person(Integer.parseInt(personParam[0]), personParam[1], personParam[2], 0);
          //set login user
          nameLabel.setText(loggedPerson.getName());
          surnameLabel.setText(loggedPerson.getSurname());
@@ -71,7 +74,6 @@ public class ElectionWindow extends javax.swing.JFrame {
     public void generateRadioButtons()
     {
         Font  f1  = new Font(Font.SERIF, Font.PLAIN,  18);
-        
         for(int i = 0; i < candi.size(); i++)
         {
             JRadioButton button1 = new JRadioButton(candi.get(i).getFullName());
@@ -195,7 +197,7 @@ public class ElectionWindow extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Váš hlas byl odevzdán!", "Odevzdáno", JOptionPane.DEFAULT_OPTION);
                     return;
                 } catch (DuplicateVoteException ex) {
-                    JOptionPane.showMessageDialog(this, "Daná osoba byla zvolena dvakrát vámi.", "Varování", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Už jste hlasovali!", "Varování", JOptionPane.WARNING_MESSAGE);
                     return;
                 } catch (NotFoundException ex) {
                     JOptionPane.showMessageDialog(this, "Vybraná osoba nebyla naleznuta", "Varování", JOptionPane.WARNING_MESSAGE);
