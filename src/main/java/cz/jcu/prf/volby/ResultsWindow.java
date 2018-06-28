@@ -31,16 +31,14 @@ public class ResultsWindow extends javax.swing.JFrame {
      * Creates new form ResultsWindow
      * @param lw
      */
-    public ResultsWindow() {
+    public ResultsWindow(LoginWindow lw) {
         initComponents();
         barArea_jPanel.setLayout(new FlowLayout(FlowLayout.CENTER,40,0));
         
-        ElectionServiceMock esm = new ElectionServiceMock();
+        ElectionService esm = new ElectionServiceImplementation();
         
         totalVotes = esm.getTotalVotes();
-        
-        
-        System.out.println(totalVotes);
+        //System.out.println(totalVotes);
         insertBar(12);
         insertBar(105);
         insertBar(241);
@@ -53,7 +51,7 @@ public class ResultsWindow extends javax.swing.JFrame {
     }
     
     public static void main(String[] args) {
-        ResultsWindow k = new ResultsWindow();
+        ResultsWindow k = new ResultsWindow(null);
         k.setVisible(true);
     }
     

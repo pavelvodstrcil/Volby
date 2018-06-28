@@ -41,14 +41,14 @@ public class ElectionWindow extends javax.swing.JFrame {
         initComponents();
         if (lw!=null)
             this.lw = lw;
-        esm = new ElectionServiceMock();
+        esm = new ElectionServiceImplementation();
 
          addWindowListener(exitListener); //REGISTER LISTENER
          
          //
          candi = esm.getCanditates();
          //TEST
-         loggedPerson = candi.get(0);
+         //loggedPerson = candi.get(0);
          //set login user
          nameLabel.setText(loggedPerson.getName());
          surnameLabel.setText(loggedPerson.getSurname());
@@ -83,7 +83,7 @@ public class ElectionWindow extends javax.swing.JFrame {
             candiPanel.add(button1);
             
             candiGroup.add(button1);
-            System.out.println(candi.get(i).getName());
+            //System.out.println(candi.get(i).getName());
             
         }
       
