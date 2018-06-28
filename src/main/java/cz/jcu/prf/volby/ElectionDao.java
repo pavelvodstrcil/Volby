@@ -48,7 +48,7 @@ public interface ElectionDao {
     /**
      * Vrati jmeno kandidata
      * @param candId - id vybraneho kandidata
-     * @return pole(string) - jmeno, prijmeni
+     * @return pole(string) - jmeno, prijmeni -- pokud vrati pouze 3 - chyba databaze
      */
     public String[] getCandidateName(long candId);
     
