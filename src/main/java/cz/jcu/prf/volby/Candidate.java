@@ -6,7 +6,7 @@ package cz.jcu.prf.volby;
  */
    public class Candidate{
        
-        private ElectionService es = new ElectionServiceMock();
+        //private ElectionService es = new ElectionServiceMock();
        
         private long id;
         private String firstName;
@@ -14,6 +14,7 @@ package cz.jcu.prf.volby;
         private int countVotes;
         
         
+        /*
         public Candidate(long id){
             this.id = id;
             String[] names = es.getCadidateNames(this.id);
@@ -22,6 +23,7 @@ package cz.jcu.prf.volby;
             this.countVotes = es.getVotes(this.id);
 
         }
+        */
         
         public Candidate(long id, String firstName, String lastName, int countVotes){
             this.id = id;
