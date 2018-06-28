@@ -41,7 +41,7 @@ public interface ElectionDao {
     /**
      * Vrati id kandidatu.
      * @param voteDateId - id data voleb
-     * @return pole(string) - seznam id kandidatu 
+     * @return pole(string) - seznam id kandidatu -- pokud vrati pouze 3 - chyba databaze -- pokud vrati pouze 2 - spatne voteDateId
      */
     public String[] getCandidatesId(int voteDateId);  
     
