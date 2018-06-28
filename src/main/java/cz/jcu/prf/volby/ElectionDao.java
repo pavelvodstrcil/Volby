@@ -46,16 +46,16 @@ public interface ElectionDao {
     public String[] getCandidatesId(int voteDate);  
     
     /**
-     * Vrati jmena kandidatu
+     * Vrati jmeno kandidata
      * @param candId - id vybraneho kandidata
-     * @return pole(string) - candId, jmeno, prijmeni
+     * @return pole(string) - jmeno, prijmeni
      */
-    public String[][] getCandidatesNames(String[] candId);
+    public String[] getCandidateName(String candId);
     
     /**
      * Vrati pocet hlasu kandidata.
      * @param candId - id vybraneho kandidata
-     * @return pole(string) - candId, pocetHlasu
+     * @return pocet hlasu
      */
-    public String[][] getCandidatesVote(String candId);
+    public String getCandidateVotes(String candId);
 }
