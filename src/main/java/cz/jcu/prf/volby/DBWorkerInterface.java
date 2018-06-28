@@ -1,8 +1,6 @@
+package cz.jcu.prf.volby;
 
-
-import java.lang.reflect.Array;
 import java.util.Date;
-import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
