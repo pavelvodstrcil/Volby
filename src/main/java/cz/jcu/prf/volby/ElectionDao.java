@@ -63,5 +63,5 @@ public interface ElectionDao {
      * @param candId - id vybraneho kandidata
      * @return pole(string) - candId, pocetHlasu
      */
-    public String[][] getCandidateVote(String candId);
+    public String[][] getCandidatesVote(String candId);
 }

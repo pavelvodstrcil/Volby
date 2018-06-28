@@ -43,7 +43,7 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public String[][] getCandidateVote(String candId) {
+    public String[][] getCandidatesVote(String candId) {
         String[][] a = new String[][]{{"132","41"},{"123213","54"},{"4543","104"}};
         return a;
     }
