@@ -142,7 +142,7 @@ public class ElectionDaoImplementaion implements ElectionDao {
 
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM 'Osoby' JOIN 'Kandidat' ON Osoby.id = Kandidat.idOsoby WHERE Kandidat.id = '" + candId + "'");
+            rs = st.executeQuery("SELECT * FROM Osoby JOIN Kandidat ON Osoby.id = Kandidat.idOsoby WHERE Kandidat.id = '" + candId + "'");
             rs.next();
             result[0] = rs.getString(4);
             result[1] = rs.getString(5);
