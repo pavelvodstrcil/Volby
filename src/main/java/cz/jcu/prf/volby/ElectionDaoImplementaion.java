@@ -85,7 +85,35 @@ public class ElectionDaoImplementaion implements ElectionDao{
 
     @Override
     public String[] getCandidatesId(int voteDateId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String[] result;
+        try {
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            st = con.createStatement();
+
+            rs = st.executeQuery("SELECT * FROM Kandidat k WHERE idObdobi='" + voteDateId + "'");
+
+            if (rs == null) {
+                result = new String[1];
+                result[0] = Integer.toString(FALSE);
+                return result;
+            }
+
+            rs.last();
+            int k = rs.getRow();
+            result = new String[k];
+            rs.beforeFirst();
+            int i = 0;
+            while (rs.next()) {
+                result[i] = rs.getString(1);
+                i++;
+            }
+            con.close();
+            return result;
+        } catch (SQLException ex) {
+            result = new String[1];
+            result[0] = Integer.toString(ERROR);
+            return result;
+        }
     }
 
     @Override
