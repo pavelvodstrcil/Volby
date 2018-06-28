@@ -14,7 +14,8 @@ public class LoginWindow extends javax.swing.JFrame {
         initComponents();
         ele = new ElectionServiceMock();
     }
- 
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,7 +112,6 @@ public class LoginWindow extends javax.swing.JFrame {
         switch((int)res){
             case 1:  ElectionWindow e = new ElectionWindow();
                      e.setVisible(true);
-                     
                      break;
             case 2:  
                      break;
