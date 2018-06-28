@@ -61,7 +61,7 @@ public class ElectionDaoImplementaion implements ElectionDao{
     }
 
     @Override
-    public int verifyVote(String hashOP, int date) {
+    public int verifyVote(String personId, int date) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

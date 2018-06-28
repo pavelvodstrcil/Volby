@@ -27,7 +27,7 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public int verifyVote(String hashOP, int date) {
+    public int verifyVote(String personId, int date) {
         return 1;
     }
 

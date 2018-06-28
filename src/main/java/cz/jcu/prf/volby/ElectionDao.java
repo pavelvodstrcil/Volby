@@ -25,10 +25,11 @@ public interface ElectionDao {
     
     /**
      * Overi zda volic volil.
-     * @param hashOP - zahashovane cislo OP volice
+     * @param personId - zahashovane cislo OP volice
+     * @param date - datum voleb
      * @return 1-volic nehlasoval 4-volic hlasoval 3-chyba databaze
      */
-    public int verifyVote(String hashOP, int date);
+    public int verifyVote(String personId, int date);
         
     /**
      * Vrati udaje o volici.
