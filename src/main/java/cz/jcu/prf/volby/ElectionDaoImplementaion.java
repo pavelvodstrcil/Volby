@@ -121,7 +121,7 @@ public class ElectionDaoImplementaion implements ElectionDao {
 
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM `Osoby` JOIN `Kandidat` ON Osoby.id = Kandidat.idOsoby WHERE Kandidat.id = '" + 1 + "'");
+            rs = st.executeQuery("SELECT * FROM 'Osoby' JOIN 'Kandidat' ON Osoby.id = Kandidat.idOsoby WHERE Kandidat.id = '" + 1 + "'");
             rs.next();
             result[0] = rs.getString(4);
             result[1] = rs.getString(5);
@@ -134,7 +134,7 @@ public class ElectionDaoImplementaion implements ElectionDao {
     }
 
     @Override
-    public String getCandidateVotes(long candId) {
+    public String getCandidateVotes(long candId, int voteDate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

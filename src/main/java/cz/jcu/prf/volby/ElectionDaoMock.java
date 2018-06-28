@@ -50,7 +50,7 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public String getCandidateVotes(long candId) {     
+    public String getCandidateVotes(long candId, int voteDate) {     
         return "21";
     }
     

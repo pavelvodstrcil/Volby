@@ -57,5 +57,5 @@ public interface ElectionDao {
      * @param candId - id vybraneho kandidata
      * @return pocet hlasu
      */
-    public String getCandidateVotes(long candId);
+    public String getCandidateVotes(long candId, int voteDate);
 }
