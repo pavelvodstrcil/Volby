@@ -79,5 +79,10 @@ public class ElectionServiceImplementation implements ElectionService{
     public String[] getCadidateNames(long candidateID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public int getCurrentVoteDate() {
+        return 0;
+    }
     
 }

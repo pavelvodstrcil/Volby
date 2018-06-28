@@ -24,5 +24,7 @@ public interface ElectionService {
     
     public long authenticateUser(String documentNumber, String password);
     
+    public int getCurrentVoteDate();
+    
 
 }
