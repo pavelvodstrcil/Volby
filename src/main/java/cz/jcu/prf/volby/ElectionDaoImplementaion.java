@@ -21,15 +21,14 @@ public class ElectionDaoImplementaion implements ElectionDao {
     private static final int TRUE = 1;
     private static final int FALSE = 2;
     private static final int ERROR = 3;
+    private static final int VOTED = 4;
 
     private static Connection con = null;
     private static ResultSet rs = null;
     private static Statement st = null;
-    private static PreparedStatement pst;
 
     @Override
     public int verifyUser(String hashOP, String passwd) {
-
         try {
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             st = con.createStatement();
@@ -58,7 +57,20 @@ public class ElectionDaoImplementaion implements ElectionDao {
 
     @Override
     public int verifyVote(int personId, int date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM Hlasy WHERE idOsoby='" + personId + "' AND datum='" + date + "'");
+            if(rs.next()){
+                return VOTED;
+            }
+            else {
+                con.close();
+                return TRUE;
+            }
+        } catch (SQLException ex) {
+            return ERROR;
+        }
     }
 
     @Override
@@ -146,7 +158,6 @@ public class ElectionDaoImplementaion implements ElectionDao {
          return result = rs.getInt(1);
 
      } catch (SQLException ex) {
-
          return result = ERROR;
      }
 }
