@@ -53,11 +53,8 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public List getCandidateVotes(long candId, int voteDate) {     
-        List a;
-        a = new ArrayList<String>();
-        a.add("21");
-        return a;
+    public String getCandidateVotes(long candId, int voteDate) {     
+        return "32";
     }
     
     @Override

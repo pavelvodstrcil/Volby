@@ -135,7 +135,7 @@ public class ElectionDaoImplementaion implements ElectionDao {
     }
 
     @Override
-    public List getCandidateVotes(long candId, int voteDate) {
+    public String getCandidateVotes(long candId, int voteDate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
