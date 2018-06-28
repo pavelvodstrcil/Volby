@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author User
  */
-public interface DBWorkerInterface {
+public interface ElectionDao {
     
     /**
      * Overi zadane udaje prihlasovaneho volice.
@@ -35,7 +35,7 @@ public interface DBWorkerInterface {
      * @param hashOP - zahashovane cislo OP volice
      * @return 1-volic nehlasoval 4-volic hlasoval 3-chyba databaze
      */
-    public int VerifyVote(String hashOP);
+    public int verifyVote(String hashOP);
         
     /**
      * Vrati udaje o volici.
