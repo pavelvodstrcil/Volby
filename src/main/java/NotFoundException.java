@@ -6,7 +6,7 @@
 
 /**
  *
- * @author User
+ * @author My všichni
  */
 public class NotFoundException extends Exception{
     
