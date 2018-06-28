@@ -1,13 +1,5 @@
 package cz.jcu.prf.volby;
 
-import java.util.Date;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author User
@@ -24,18 +16,20 @@ public interface ElectionDao {
     
     /**
      * Prida hlas vybranemu kandidatovi. Nastavi volicovi ze uz volil.
-     * @param hashOP - zahashovane cislo OP volice
+     * @param personId - id cislo volice
      * @param candId - id vybraneho kandidata
+     * @param voteDate - datum voleb
      * @return 1-vse probehlo spravne 3-chyba databaze
      */
-    public int vote(String hashOP, String candId);
+    public int vote(String personId, String candId, int voteDate);
     
     /**
      * Overi zda volic volil.
-     * @param hashOP - zahashovane cislo OP volice
+     * @param personId - zahashovane cislo OP volice
+     * @param date - datum voleb
      * @return 1-volic nehlasoval 4-volic hlasoval 3-chyba databaze
      */
-    public int verifyVote(String hashOP);
+    public int verifyVote(String personId, int date);
         
     /**
      * Vrati udaje o volici.
@@ -49,7 +43,7 @@ public interface ElectionDao {
      * @param voteDate - datum voleb
      * @return pole(string) - seznam id kandidatu 
      */
-    public String[] getCandidatesId(Date voteDate);  
+    public String[] getCandidatesId(int voteDate);  
     
     /**
      * Vrati jmena kandidatu

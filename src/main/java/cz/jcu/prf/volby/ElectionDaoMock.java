@@ -1,7 +1,5 @@
 package cz.jcu.prf.volby;
 
-import java.util.Date;
-
 /**
  *
  * @author User
@@ -24,12 +22,12 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public int vote(String hashOP, String candId) {
+    public int vote(String personId, String candId,int voteDate) {
         return 1;
     }
 
     @Override
-    public int verifyVote(String hashOP) {
+    public int verifyVote(String personId, int date) {
         return 1;
     }
 
@@ -40,7 +38,7 @@ public class ElectionDaoMock implements ElectionDao{
     }
 
     @Override
-    public String[] getCandidatesId(Date voteDate) {
+    public String[] getCandidatesId(int voteDate) {
         String[] a = new String[]{"132","123213","4543",};
         return a;
     }
