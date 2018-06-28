@@ -13,7 +13,9 @@ public interface ElectionService {
     
     public List<Candidate> getCanditates();
     
-    public int getVotes(long candidateID);
+    public String getVotes(long candidateID);
+    
+    public int getTotalVotes();
     
     public void vote(long personID, long candidateID) throws DuplicateVoteException, NotFoundException;
     

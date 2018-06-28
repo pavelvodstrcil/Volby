@@ -9,9 +9,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,54 +26,74 @@ import javax.swing.SwingConstants;
 public class ResultsWindow extends javax.swing.JFrame {
 
     LoginWindow lw;
-    
+    private int totalVotes;
     /**
      * Creates new form ResultsWindow
+     * @param lw
      */
-    public ResultsWindow(LoginWindow lw) {
+    public ResultsWindow() {
         initComponents();
-        for (int i = 0; i < 3; i++) {
-            JPanel wrapPanel = new JPanel();
+        barArea_jPanel.setLayout(new FlowLayout(FlowLayout.CENTER,40,0));
+        
+        ElectionServiceMock esm = new ElectionServiceMock();
+        
+        totalVotes = esm.getTotalVotes();
+        
+        
+        System.out.println(totalVotes);
+        insertBar(12);
+        insertBar(105);
+        insertBar(241);
+        insertBar(142);
+        
+        if (lw!=null)
+            this.lw = lw; //ADD REFER
+        addWindowListener(exitListener); //REGISTER LISTENER
+        
+    }
+    
+    public static void main(String[] args) {
+        ResultsWindow k = new ResultsWindow();
+        k.setVisible(true);
+    }
+    
+    public void insertBar(int pocetHlasu){
+        JPanel wrapPanel = new JPanel();
             wrapPanel.setPreferredSize(new Dimension(180, 450));
             wrapPanel.setLayout(new BorderLayout());
-            wrapPanel.setBackground(new Color(77,126,175));
-           
-            JLabel percentageLabel = new JLabel("45 %");
+
+            float percent = 100/(float)totalVotes*(float)pocetHlasu;
+            
+            //Přidá procenta nahoru
+            JLabel percentageLabel = new JLabel(percent + " %");
             percentageLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
             percentageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            //percentageLabel.setAlignmentX(percentageLabel.CENTER_ALIGNMENT);
             JPanel percentagePanel = new JPanel();
             percentagePanel.setPreferredSize(new Dimension(180, 30));
-
+            wrapPanel.add(percentageLabel,BorderLayout.NORTH);
             
-            wrapPanel.add(percentageLabel, BorderLayout.NORTH);
+            //Přidá bar doprostřed
+            JPanel centerFillPanel = new JPanel(new BorderLayout());
+            wrapPanel.add(centerFillPanel,BorderLayout.CENTER);
+            JPanel bottomFillPanel = new JPanel(new FlowLayout());
+            centerFillPanel.add(bottomFillPanel,BorderLayout.SOUTH);
+            
+            int heightOfBar = (int)percent * 4;
             
             JPanel barPanel = new JPanel();
-            barPanel.setPreferredSize(new Dimension(80, 350));
+            barPanel.setPreferredSize(new Dimension(80, heightOfBar));  //400 je 100 %
             barPanel.setBackground(Color.red);
+            bottomFillPanel.add(barPanel);
             
-            JPanel centerPanel = new JPanel();
-            centerPanel.setLayout(new FlowLayout());
-            centerPanel.add(barPanel);
-            barPanel.setAlignmentY(BOTTOM_ALIGNMENT);
-            wrapPanel.add(centerPanel,BorderLayout.CENTER);
-
+            //Přidá jméno kandidáta dolů
             JLabel nameLabel = new JLabel();
             nameLabel.setText("Klement Gottwald");
             nameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 15));
             nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            wrapPanel.add(nameLabel, BorderLayout.SOUTH);
+            wrapPanel.add(nameLabel,BorderLayout.SOUTH);
             
             barArea_jPanel.add(wrapPanel);
-            
-           
-        }
-        if (lw!=null)
-            this.lw = lw; //ADD REFER
-        addWindowListener(exitListener); //REGISTER LISTENER
-    }
-    
-    public void insertBar(){
-        
     }
     
     WindowListener exitListener = new WindowAdapter() {
@@ -97,10 +117,11 @@ public class ResultsWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         electionTitle = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         barArea_jPanel = new javax.swing.JPanel();
+        buttonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setResizable(false);
 
         electionTitle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         electionTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -108,7 +129,15 @@ public class ResultsWindow extends javax.swing.JFrame {
         electionTitle.setToolTipText("");
         electionTitle.setName(""); // NOI18N
 
-        barArea_jPanel.setBackground(new java.awt.Color(235, 214, 214));
+        barArea_jPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPane1.setViewportView(barArea_jPanel);
+
+        buttonBack.setText("Zpět");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,25 +146,38 @@ public class ResultsWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 220, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 272, Short.MAX_VALUE)
                         .addComponent(electionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 220, Short.MAX_VALUE))
-                    .addComponent(barArea_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 273, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(26, 26, 26)
                 .addComponent(electionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(barArea_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonBack)
+                .addGap(7, 7, 7))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        // TODO add your handling code here:
+        //Povolí předchozí okno
+        lw.setEnabled(true);
+        //Zavře okno
+        dispose();
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +216,8 @@ public class ResultsWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barArea_jPanel;
+    private javax.swing.JButton buttonBack;
     private javax.swing.JLabel electionTitle;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

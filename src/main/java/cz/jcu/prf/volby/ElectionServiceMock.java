@@ -21,7 +21,7 @@ public class ElectionServiceMock implements ElectionService{
     // ID kandidáta a počet jeho hlasů
     private Map<Long, Integer> candidateVotes;
     private List<Candidate> candidates;
-    private ElectionDaoMock ElectionDao = ElectionDaoMock.getInstance();
+    private ElectionDao ElectionDao = ElectionDaoMock.getInstance();
  
  
     
@@ -59,10 +59,19 @@ public class ElectionServiceMock implements ElectionService{
    }
    
     @Override
-   public int getVotes(long candidateID){
+   public String getVotes(long candidateID){
        return candidateVotes.get(candidateID);
    }
 
+   public int getTotalVotes(){
+       List<Candidate> iCandidates = getCanditates();
+       int votes = 0;
+       for(Candidate i:iCandidates){
+           votes += getVotes(i.getID());
+       }
+       return votes;
+   }
+   
     @Override
     public List<Candidate> getCanditates() {
         return candidates;  
