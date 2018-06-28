@@ -126,9 +126,8 @@ public class LoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
-       ResultsWindow r = new ResultsWindow(ele);
-       r.setVisible(true);
-       this.setEnabled(false);
+       new ResultsWindow(ele).setVisible(true);
+       dispose();
     }//GEN-LAST:event_resultsButtonActionPerformed
 
     public JTextField loginField(){

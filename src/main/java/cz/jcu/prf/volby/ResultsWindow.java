@@ -25,9 +25,8 @@ import javax.swing.SwingConstants;
  */
 public class ResultsWindow extends javax.swing.JFrame {
 
-    LoginWindow lw;
     private int totalVotes;
-    
+    private ElectionService es;
     /**
      * Creates new form ResultsWindow
      * @param lw
@@ -36,6 +35,9 @@ public class ResultsWindow extends javax.swing.JFrame {
     
     public ResultsWindow(ElectionService es) {
         initComponents();
+        this.es = es;
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
         totalVotes = es.getTotalVotes();
         
         barArea_jPanel.setLayout(new FlowLayout(FlowLayout.CENTER,40,0));
@@ -44,8 +46,6 @@ public class ResultsWindow extends javax.swing.JFrame {
             insertBar(i);
         }
         
-        if (lw!=null)
-            this.lw = lw; //ADD REFER
         addWindowListener(exitListener); //REGISTER LISTENER
         
     }
@@ -98,8 +98,6 @@ public class ResultsWindow extends javax.swing.JFrame {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        //Povolí předchozí okno
-        lw.setEnabled(true);
         //Zavře okno
         dispose();
     }
@@ -170,10 +168,8 @@ public class ResultsWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        // TODO add your handling code here:
-        //Povolí předchozí okno
-        lw.setEnabled(true);
-        //Zavře okno
+        //Zavře okno, ale otevře nové LoginWindow
+        new LoginWindow(es).setVisible(true);
         dispose();
     }//GEN-LAST:event_buttonBackActionPerformed
 
