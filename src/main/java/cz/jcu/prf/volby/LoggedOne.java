@@ -13,26 +13,26 @@ package cz.jcu.prf.volby;
 public class LoggedOne {
 
     private String hashOP;
-    private String jmeno;
-    private String prijmeni;
+    private String firstName;
+    private String lastName;
 
     public String getHashOP() {
         return hashOP;
     }
 
-    public String getJmeno() {
-        return jmeno;
+    public String getfirstName() {
+        return firstName;
     }
 
-    public String getPrijmeni() {
-        return prijmeni;
+    public String getlastName() {
+        return lastName;
     }
 
     public LoggedOne(String[] array) {
 
         this.hashOP = array[0];
-        this.jmeno = array[1];
-        this.prijmeni = array[2];
+        this.firstName = array[1];
+        this.lastName = array[2];
     }
 
 }
