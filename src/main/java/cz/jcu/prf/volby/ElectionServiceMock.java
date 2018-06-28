@@ -2,7 +2,6 @@ package cz.jcu.prf.volby;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -54,22 +53,34 @@ public class ElectionServiceMock implements ElectionService{
     }
     
     @Override
-   public long authenticateUser(String documentNumber, String password){
-      return ElectionDao.verifyUser(password, password);
-   }
+    public long authenticateUser(String documentNumber, String password){
+       return ElectionDao.verifyUser(password, password);
+    }
    
     @Override
-   public String getVotes(long candidateID){
-       return Integer.toString(candidateVotes.get((int)candidateID));
-   }
+    public int getVotes(long candidateID){
+        return candidateVotes.get(candidateID);
+    }
 
-   public int getTotalVotes(){
-       int pomVotes = 0;
-        for(Candidate c: candidates){
-            pomVotes+=Integer.parseInt(getVotes(c.getID()));
+    @Override
+    public int getTotalVotes(){
+        List<Candidate> iCandidates = getCanditates();
+        int votes = 0;
+        for(Candidate i:iCandidates){
+            votes += i.getCountVotes();
         }
-        return pomVotes;
-   }
+        return votes;
+    }
+   
+    @Override
+    public String[] getCadidateNames(long candidateID){
+        for(Candidate i : candidates){
+            if(i.getID() == candidateID)
+                return new String[]{i.getFirstName(),i.getLastName()};
+        }
+        return new String[]{" "," "};
+    }
+
    
     @Override
     public List<Candidate> getCanditates() {

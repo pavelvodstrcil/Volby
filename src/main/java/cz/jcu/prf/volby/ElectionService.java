@@ -13,7 +13,9 @@ public interface ElectionService {
     
     public List<Candidate> getCanditates();
     
-    public String getVotes(long candidateID);
+    public int getVotes(long candidateID);
+    
+    public String[] getCadidateNames(long candidateID);
     
     public int getTotalVotes();
     

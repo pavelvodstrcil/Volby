@@ -65,14 +65,19 @@ public class ElectionServiceImplementation implements ElectionService{
     public int getTotalVotes() {
         int pomVotes = 0;
         for(Candidate c: candidates){
-            pomVotes+=Integer.parseInt(getVotes(c.getID()));
+            pomVotes += c.getCountVotes();
         }
         return pomVotes;
     }
 
     @Override
-    public String getVotes(long candidateID) {
-        return Integer.toString(candidateVotes.get((int)candidateID));
+    public int getVotes(long candidateID) {
+        return 0;
+    }
+
+    @Override
+    public String[] getCadidateNames(long candidateID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
