@@ -60,16 +60,15 @@ public class ElectionServiceMock implements ElectionService{
    
     @Override
    public String getVotes(long candidateID){
-       return candidateVotes.get(candidateID);
+       return Integer.toString(candidateVotes.get((int)candidateID));
    }
 
    public int getTotalVotes(){
-       List<Candidate> iCandidates = getCanditates();
-       int votes = 0;
-       for(Candidate i:iCandidates){
-           votes += getVotes(i.getID());
-       }
-       return votes;
+       int pomVotes = 0;
+        for(Candidate c: candidates){
+            pomVotes+=Integer.parseInt(getVotes(c.getID()));
+        }
+        return pomVotes;
    }
    
     @Override

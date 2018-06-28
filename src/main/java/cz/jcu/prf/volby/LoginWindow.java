@@ -13,7 +13,7 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
-        ele = new ElectionServiceMock();
+        ele = new ElectionServiceImplementation();
     }
     
 
@@ -125,7 +125,7 @@ public class LoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
-       ResultsWindow r = new ResultsWindow();
+       ResultsWindow r = new ResultsWindow(this);
        r.setVisible(true);
        this.setEnabled(false);
     }//GEN-LAST:event_resultsButtonActionPerformed
