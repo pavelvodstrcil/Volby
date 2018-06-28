@@ -61,8 +61,8 @@ public interface ElectionDao {
     public String getCandidateVotes(long candId, int voteDate);
     
     /**
-     * 
-     * @return 
+     * Vrati nejnovejsi datum volebniho obdobi.
+     * @return datum nejnovejsiho volebniho obdobi
      */
     public String currentVoteDate();
 }
