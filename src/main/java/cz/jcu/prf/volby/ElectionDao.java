@@ -47,9 +47,9 @@ public interface ElectionDao {
     /**
      * Vrati id kandidatu.
      * @param voteDate - datum voleb
-     * @return list(string) - seznam id kandidatu
+     * @return pole(string) - seznam id kandidatu 
      */
-    public String[] getCandidates(Date voteDate);  
+    public String[] getCandidatesId(Date voteDate);  
     
     /**
      * Vrati jmena kandidatu
@@ -63,5 +63,5 @@ public interface ElectionDao {
      * @param candId - id vybraneho kandidata
      * @return pole(string) - candId, pocetHlasu
      */
-    public String[] getCandidateVote(String candId);
+    public String[][] getCandidateVote(String candId);
 }
