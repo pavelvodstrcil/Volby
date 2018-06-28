@@ -8,13 +8,14 @@ import javax.swing.JTextField;
  * @author User
  */
 public class LoginWindow extends javax.swing.JFrame {
-    ElectionService ele;
+    ElectionService es;
     /**
      * Creates new form LoginWindow
+     * @param es
      */
     public LoginWindow(ElectionService es) {
         initComponents();
-        ele = es;
+        this.es = es;
     }
     
 
@@ -110,7 +111,7 @@ public class LoginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        long res = ele.authenticateUser(loginField.getText(), new String(passwordField.getPassword()));
+        long res = es.authenticateUser(loginField.getText(), new String(passwordField.getPassword()));
         switch((int)res){
             case 1:  ElectionWindow e = new ElectionWindow(this);
                      e.setVisible(true);
@@ -126,7 +127,7 @@ public class LoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
-       new ResultsWindow(ele).setVisible(true);
+       new ResultsWindow(es).setVisible(true);
        dispose();
     }//GEN-LAST:event_resultsButtonActionPerformed
 
