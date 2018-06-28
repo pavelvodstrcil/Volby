@@ -27,17 +27,19 @@ public class ResultsWindow extends javax.swing.JFrame {
 
     LoginWindow lw;
     private int totalVotes;
+    
     /**
      * Creates new form ResultsWindow
      * @param lw
      */
-    public ResultsWindow(LoginWindow lw) {
+    
+    
+    public ResultsWindow(ElectionService es) {
         initComponents();
+        totalVotes = es.getTotalVotes();
+        
         barArea_jPanel.setLayout(new FlowLayout(FlowLayout.CENTER,40,0));
-        
-        ElectionService esm = new ElectionServiceImplementation();
-        
-        totalVotes = esm.getTotalVotes();
+
         //System.out.println(totalVotes);
         insertBar(12);
         insertBar(105);

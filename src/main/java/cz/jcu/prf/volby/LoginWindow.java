@@ -11,9 +11,9 @@ public class LoginWindow extends javax.swing.JFrame {
     /**
      * Creates new form LoginWindow
      */
-    public LoginWindow() {
+    public LoginWindow(ElectionService es) {
         initComponents();
-        ele = new ElectionServiceImplementation();
+        ele = es;
     }
     
 
@@ -125,7 +125,7 @@ public class LoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
-       ResultsWindow r = new ResultsWindow(this);
+       ResultsWindow r = new ResultsWindow(ele);
        r.setVisible(true);
        this.setEnabled(false);
     }//GEN-LAST:event_resultsButtonActionPerformed

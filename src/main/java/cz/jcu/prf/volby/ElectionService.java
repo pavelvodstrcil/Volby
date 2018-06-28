@@ -9,6 +9,7 @@ import java.util.List;
  *
  * @author User
  */
+
 public interface ElectionService {
     
     public List<Candidate> getCanditates();
@@ -22,4 +23,6 @@ public interface ElectionService {
     public void vote(long personID, long candidateID) throws DuplicateVoteException, NotFoundException;
     
     public long authenticateUser(String documentNumber, String password);
+    
+
 }
