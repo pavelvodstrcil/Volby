@@ -21,17 +21,17 @@ public class ElectionServiceMock implements ElectionService{
     private Set<Long> votedPersons;
     private Map<Long, Integer> candidateVotes;
     private List<Candidate> candidates;
-     ElectionDaoMock ElectionDao = ElectionDaoMock.getInstance();
+    private ElectionDaoMock ElectionDao = ElectionDaoMock.getInstance();
  
    // List<Candidate> candidates = Arrays.asList(new Candidate(1), new Candidate(2), new Candidate(3));
  
-    public ElectionServiceMock(List<Candidate> candidates){
-        votedPersons = new TreeSet<>();
+    public ElectionServiceMock(/*List<Candidate> candidates*/){
+        /*votedPersons = new TreeSet<>();
         candidateVotes = new HashMap<>();
         this.candidates = candidates;
         this.candidates.forEach((candidate) -> {
             candidateVotes.put(candidate.getID(), 0);
-        });
+        });*/
     }
     
     public void vote(long personID, long candidateID) throws DuplicateVoteException,NotFoundException{
@@ -45,8 +45,7 @@ public class ElectionServiceMock implements ElectionService{
     }
     
    public long authenticateUser(String documentNumber, String password){
-       
-       return 0;
+      return ElectionDao.verifyUser(password, password);
    }
    
    public int getVotes(long candidateID){
