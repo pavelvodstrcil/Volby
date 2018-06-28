@@ -26,7 +26,7 @@ public class ElectionStart {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ElectionService es = new ElectionServiceMock();
+                ElectionService es = new ElectionServiceImplementation();
                 new LoginWindow(es).setVisible(true);
             }
         });
