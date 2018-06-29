@@ -54,7 +54,7 @@ public class ElectionServiceMock implements ElectionService{
     
     @Override
     public long authenticateUser(String documentNumber, String password){
-       return ElectionDao.verifyUser(password, password);
+       return ElectionDao.verifyUser(documentNumber, password);
     }
    
     @Override
