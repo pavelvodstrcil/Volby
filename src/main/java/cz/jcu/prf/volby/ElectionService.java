@@ -1,7 +1,5 @@
 package cz.jcu.prf.volby;
 
-import cz.jcu.prf.volby.DuplicateVoteException;
-import cz.jcu.prf.volby.Candidate;
 import java.util.List;
 
 

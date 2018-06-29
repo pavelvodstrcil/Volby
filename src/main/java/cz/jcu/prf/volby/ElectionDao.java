@@ -1,6 +1,5 @@
 package cz.jcu.prf.volby;
 
-import java.util.List;
 
 /**
  *
