@@ -29,15 +29,13 @@ public interface ElectionService {
      * Navratí jména zadaných kandidátů
      * @param candidateID
      * @return pole(string) jmen kandidátů
-     */
-    
+     */    
     public String[] getCadidateNames(long candidateID);
     
     /**
      * Načte počet hlasů.
      * @return počet hlasů určitého kandidáta.
      */
-    
     public int getTotalVotes();
     
     /**
@@ -45,7 +43,6 @@ public interface ElectionService {
      * @param personID - id cislo volice
      * @param candidateID - id vybraného kandidáta
      */
-    
     public void vote(long personID, long candidateID) throws DuplicateVoteException, NotFoundException;
     
     /**
@@ -54,7 +51,6 @@ public interface ElectionService {
      * @param password - heslo voliče
      * @return 1-vse probehlo spravne 2- špatně zadané přihlašovací údaje 3-chyba databaze
      */
-    
     public long authenticateUser(String documentNumber, String password);
     
 
