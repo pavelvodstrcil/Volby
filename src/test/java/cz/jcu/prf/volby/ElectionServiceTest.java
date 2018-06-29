@@ -91,12 +91,4 @@ public class ElectionServiceTest {
         }
     }
 
-    /**
-     * Test of authenticateUser method, of class ElectionService.
-     */
-    @Test
-    public void testAuthenticateUser() {
-        
-    }
-
 }
