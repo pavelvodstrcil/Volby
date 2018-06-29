@@ -1,5 +1,6 @@
 package cz.jcu.prf.volby;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -67,6 +68,11 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel2.setText("Heslo:");
 
         passwordField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,12 +122,13 @@ public class LoginWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void authenticateLogin(){
         long res = es.authenticateUser(loginField.getText(), new String(passwordField.getPassword()));
         switch((int)res){
             case 1:  ElectionWindow e = new ElectionWindow(this);
                      e.setVisible(true);
                      setEnabled(false);
+                     dispose();
                      break;
             case 2:  
                 JOptionPane.showMessageDialog(this, "Špatně zadané údaje. Prosím, zkuste znovu.", "Varování", JOptionPane.WARNING_MESSAGE);
@@ -130,12 +137,24 @@ public class LoginWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Chyba databáze. Prosím, opakujte později.", "Varování", JOptionPane.WARNING_MESSAGE);
                      break;
         }
+    }
+    
+    
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        authenticateLogin();
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void resultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsButtonActionPerformed
        new ResultsWindow(es).setVisible(true);
        dispose();
     }//GEN-LAST:event_resultsButtonActionPerformed
+
+    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            authenticateLogin();
+        }
+    }//GEN-LAST:event_passwordFieldKeyPressed
 
     public JTextField loginField(){
         return loginField;

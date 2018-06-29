@@ -63,8 +63,6 @@ public class ElectionWindow extends javax.swing.JFrame {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        //Povolí předchozí okno
-        lw.setEnabled(true);
         //Zavře okno
         dispose();
     }
@@ -190,8 +188,9 @@ public class ElectionWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        lw.setEnabled(true);
-        this.dispose();
+        LoginWindow lw = new LoginWindow(esm);
+        lw.setVisible(true);
+        dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void voteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voteButtonActionPerformed

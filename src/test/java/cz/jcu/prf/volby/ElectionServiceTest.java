@@ -28,7 +28,7 @@ public class ElectionServiceTest {
         testedCandid.add(new Candidate(0, "Jana", "Čínsková", 3));
         testedCandid.add(new Candidate(1, "Pavel", "Vodstrčil", 2));
         testedCandid.add(new Candidate(2, "Tereza", "Králová", 1));
-        testedCandid.add(new Candidate(3, "Adrian", "Czarnomski", 0));
+        testedCandid.add(new Candidate(3, "Adrian", "Czarnomski", 10));
         
         for(int i = 0; i < listCandid.size(); i++){
             assertEquals(listCandid.get(i).getAllAbout(), testedCandid.get(i).getAllAbout());
@@ -47,9 +47,9 @@ public class ElectionServiceTest {
     public void testGetVotes() {
         ElectionService es = new ElectionServiceMock();
         
-        assertEquals(es.getVotes(0), 3);
+        assertEquals(es.getVotes(es.getCanditates().get(0).getID()), 3);
         
-        assertNotEquals(es.getVotes(0), 9);
+        assertNotEquals(es.getVotes(es.getCanditates().get(0).getID()), 9);
     }
 
     /**
@@ -57,6 +57,8 @@ public class ElectionServiceTest {
      */
     @Test
     public void testGetCadidateNames() {
+        ElectionService es = new ElectionServiceMock();
+        assertArrayEquals(es.getCadidateNames(es.getCanditates().get(0).getID()), new String[]{"Jana", "Čínsková"});
     }
 
     /**
@@ -64,6 +66,9 @@ public class ElectionServiceTest {
      */
     @Test
     public void testGetTotalVotes() {
+        ElectionService es = new ElectionServiceMock();
+        assertEquals(es.getTotalVotes(), 16);
+        assertNotEquals(es.getTotalVotes(), -16);
     }
 
     /**
@@ -71,6 +76,19 @@ public class ElectionServiceTest {
      */
     @Test
     public void testVote() throws Exception {
+        ElectionService es = new ElectionServiceMock();
+        Person mama = new Person(45);
+        
+        assertEquals(es.getVotes(es.getCanditates().get(0).getID()), 3);
+        
+        es.vote(mama.getID(), 0);
+        assertEquals(es.getVotes(es.getCanditates().get(0).getID()), 4);
+        
+        try{
+            es.vote(mama.getID(), 0);
+        }catch(DuplicateVoteException dve){
+            assertNotEquals(es.getVotes(es.getCanditates().get(0).getID()), 5);
+        }
     }
 
     /**
@@ -78,6 +96,7 @@ public class ElectionServiceTest {
      */
     @Test
     public void testAuthenticateUser() {
+        
     }
 
     public class ElectionServiceImpl implements ElectionService {

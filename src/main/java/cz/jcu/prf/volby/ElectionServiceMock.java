@@ -33,7 +33,7 @@ public class ElectionServiceMock implements ElectionService{
         candidates.add(new Candidate(0, "Jana", "Čínsková", 3));
         candidates.add(new Candidate(1, "Pavel", "Vodstrčil", 2));
         candidates.add(new Candidate(2, "Tereza", "Králová", 1));
-        candidates.add(new Candidate(3, "Adrian", "Czarnomski", 0));
+        candidates.add(new Candidate(3, "Adrian", "Czarnomski", 10));
         
         this.candidates.forEach((candidate) -> {
             candidateVotes.put(candidate.getID(), candidate.getCountVotes());
