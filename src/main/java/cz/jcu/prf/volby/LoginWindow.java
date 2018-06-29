@@ -39,6 +39,9 @@ public class LoginWindow extends javax.swing.JFrame {
         setTitle("Přihlášení");
         setResizable(false);
 
+        loginField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        loginButton.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         loginButton.setText("Přihlásit");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,6 +49,7 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         });
 
+        resultsButton.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         resultsButton.setText("Výsledky");
         resultsButton.setMaximumSize(new java.awt.Dimension(69, 23));
         resultsButton.setMinimumSize(new java.awt.Dimension(69, 23));
@@ -56,10 +60,13 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel1.setText("Číslo OP: ");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel2.setText("Heslo:");
 
+        passwordField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         passwordField.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -67,7 +74,7 @@ public class LoginWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 65, Short.MAX_VALUE)
+                .addGap(0, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)

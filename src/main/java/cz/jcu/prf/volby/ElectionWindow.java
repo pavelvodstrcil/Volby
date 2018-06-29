@@ -28,7 +28,7 @@ import javax.swing.JRadioButton;
 public class ElectionWindow extends javax.swing.JFrame {
 
     
-    private int height = 10;
+    private int height = 12;
     private List<Candidate> candi;
     private ButtonGroup candiGroup = new ButtonGroup();
     
@@ -72,12 +72,12 @@ public class ElectionWindow extends javax.swing.JFrame {
     
     public void generateRadioButtons()
     {
-        Font  f1  = new Font(Font.SERIF, Font.PLAIN,  18);
+        Font  f1  = new Font(Font.SERIF, Font.PLAIN,  14);
         for(int i = 0; i < candi.size(); i++)
         {
             JRadioButton button1 = new JRadioButton(candi.get(i).getFullName());
             button1.setName(Long.toString(candi.get(i).getID()));
-            button1.setSize(300, 18);
+            button1.setSize(300, 20);
             button1.setFont(f1);
             button1.setLocation(5 ,height );
             height = height + 30;
@@ -109,6 +109,7 @@ public class ElectionWindow extends javax.swing.JFrame {
         setTitle("Volební okno");
         setResizable(false);
 
+        logoutButton.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         logoutButton.setText("Odhlásit");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,10 +117,19 @@ public class ElectionWindow extends javax.swing.JFrame {
             }
         });
 
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nameLabel.setText("jLabel1");
+        nameLabel.setMaximumSize(new java.awt.Dimension(43, 16));
+        nameLabel.setMinimumSize(new java.awt.Dimension(43, 16));
+        nameLabel.setPreferredSize(new java.awt.Dimension(43, 16));
 
+        surnameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         surnameLabel.setText("jLabel2");
+        surnameLabel.setMaximumSize(new java.awt.Dimension(43, 16));
+        surnameLabel.setMinimumSize(new java.awt.Dimension(43, 16));
+        surnameLabel.setPreferredSize(new java.awt.Dimension(43, 16));
 
+        voteButton.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         voteButton.setText("Hlasovat");
         voteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +145,7 @@ public class ElectionWindow extends javax.swing.JFrame {
         );
         candiPanelLayout.setVerticalGroup(
             candiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 179, Short.MAX_VALUE)
+            .addGap(0, 157, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,33 +156,34 @@ public class ElectionWindow extends javax.swing.JFrame {
                 .addContainerGap(150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(candiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel)
-                            .addComponent(surnameLabel))
-                        .addGap(71, 71, 71)
-                        .addComponent(logoutButton)
+                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(surnameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(voteButton)
-                        .addGap(185, 185, 185))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(candiPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))))
+                        .addComponent(voteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(185, 185, 185))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(surnameLabel))
-                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(surnameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(candiPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(22, 22, 22)
-                .addComponent(voteButton)
-                .addGap(29, 29, 29))
+                .addComponent(voteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
