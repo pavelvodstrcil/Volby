@@ -42,9 +42,8 @@ public interface ElectionService {
     
     /**
      * Prida hlas vybranemu kandidatovi.
-     * @param personId - id cislo volice
-     * @param candId - id vybraneho kandidata
-     * @return 1-vse probehlo spravne 3-chyba databaze
+     * @param personID - id cislo volice
+     * @param candidateID - id vybraného kandidáta
      */
     
     public void vote(long personID, long candidateID) throws DuplicateVoteException, NotFoundException;
