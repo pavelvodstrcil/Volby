@@ -67,7 +67,6 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel2.setText("Heslo:");
 
         passwordField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        passwordField.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
