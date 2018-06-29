@@ -99,30 +99,4 @@ public class ElectionServiceTest {
         
     }
 
-    public class ElectionServiceImpl implements ElectionService {
-
-        public List<Candidate> getCanditates() {
-            return null;
-        }
-
-        public int getVotes(long candidateID) {
-            return 0;
-        }
-
-        public String[] getCadidateNames(long candidateID) {
-            return null;
-        }
-
-        public int getTotalVotes() {
-            return 0;
-        }
-
-        public void vote(long personID, long candidateID) throws DuplicateVoteException, NotFoundException {
-        }
-
-        public long authenticateUser(String documentNumber, String password) {
-            return 0L;
-        }
-    }
-    
 }
