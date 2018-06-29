@@ -1,145 +1,66 @@
 package cz.jcu.prf.volby;
 
-/**
- *
- * @author User
- */
-   public class Candidate{
-       
-        //private ElectionService es = new ElectionServiceMock();
-       
-        private long id;
-        private String firstName;
-        private String lastName;
-        private int countVotes;
-        
-        
-        /*
-        public Candidate(long id){
-            this.id = id;
-            String[] names = es.getCadidateNames(this.id);
-            this.firstName = names[0];
-            this.lastName = names[1];
-            this.countVotes = es.getVotes(this.id);
+public class Candidate {
 
-        }
-        */
-        
-        public Candidate(long id, String firstName, String lastName, int countVotes){
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.countVotes = countVotes;
-        }
-        
-        public long getID(){
-            return this.id;
-        }
-        
-        public String getFullName(){
-            return firstName + " " + lastName;
-        }
+    private long id;
+    private String firstName;
+    private String lastName;
+    private int countVotes;
 
-        public int getCountVotes(){
-            return countVotes;
-        }
+    /**
+     * Konstrukto kandidata
+     *
+     * @param id id je prebrane z fatabaze - pro vytvoreni objektu
+     * @param firstName firstName je prebrane z fatabaze - pro vytvoreni objektu
+     * @param lastName lastName je prebrane z fatabaze - pro vytvoreni objektu
+     * @param countVotes yountVotes je prebrane z fatabaze - pro vytvoreni
+     * objektu
+     */
+    public Candidate(long id, String firstName, String lastName, int countVotes) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.countVotes = countVotes;
+    }
 
-        
-        public String getFirstName(){
-            return firstName;
-        }
-        
-        public String getLastName(){
-            return lastName;
-        }
-               
-        /*private long id;
-        private String firstName;
-        private String lastName;
-        private int countVotes;
-        
-        public Candidate(long id){
-            this.id = id;
-        }
-        
-        public Candidate(long id, String firstName, String lastName, int countVotes){
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.countVotes = countVotes;
-        }
-        
-        public long getID(){
-            return this.id;
-        }
-        
-        public String getName(){
-            return firstName + " " + lastName;
-        }
-        
-        public int getCount(){
-            return countVotes;
-        }
-*/
+    /**
+     *getter ID 
+     * @return string ID
+     */
+    public long getID() {
+        return this.id;
+    }
 
-        /*private long id;
-        private String firstName;
-        private String lastName;
-        private int countVotes;
-        
-        public Candidate(long id){
-            this.id = id;
-        }
-        
-        public Candidate(long id, String firstName, String lastName, int countVotes){
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.countVotes = countVotes;
-        }
-        
-        public long getID(){
-            return this.id;
-        }
-        
-        public String getName(){
-            return firstName + " " + lastName;
-        }
-        
-        public int getCount(){
-            return countVotes;
-        }
-*/
+    /**
+     *g getter celeho jmena pro zjednoduseni
+     * @return string celeho jmena 
+     */
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 
+    /**
+     *getter posctu hlasu
+     * @return int countVotes
+     */
+    public int getCountVotes() {
+        return countVotes;
+    }
 
-        /*private long id;
-        private String firstName;
-        private String lastName;
-        private int countVotes;
-        
-        public Candidate(long id){
-            this.id = id;
-        }
-        
-        public Candidate(long id, String firstName, String lastName, int countVotes){
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.countVotes = countVotes;
-        }
-        
-        public long getID(){
-            return this.id;
-        }
-        
-        public String getName(){
-            return firstName + " " + lastName;
-        }
-        
-        public int getCount(){
-            return countVotes;
-        }
-*/
+    /**
+     * getter firstName
+     * @return string firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     *geter lastName
+     * @return string lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
 }
- 
-
