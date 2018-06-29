@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.text.DecimalFormat;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -63,8 +64,11 @@ public class ResultsWindow extends javax.swing.JFrame {
 
             float percent = 100/(float)totalVotes*(float)i.getCountVotes();
             
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            
             //Přidá procenta nahoru
-            JLabel percentageLabel = new JLabel(percent + " %");
+            JLabel percentageLabel = new JLabel(df.format(percent) + " %");
             percentageLabel.setFont(new Font("Segoe UI", Font.BOLD, 15));
             percentageLabel.setHorizontalAlignment(SwingConstants.CENTER);
             //percentageLabel.setAlignmentX(percentageLabel.CENTER_ALIGNMENT);
