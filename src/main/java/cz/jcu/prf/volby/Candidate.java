@@ -40,7 +40,7 @@ public class Candidate {
     }
 
     /**
-     *getter posctu hlasu
+     *getter poctu hlasu
      * @return int countVotes
      */
     public int getCountVotes() {
@@ -63,4 +63,11 @@ public class Candidate {
         return lastName;
     }
 
+    public String getAllAbout(){
+        String full = "";
+        full += getID();
+        full += getFullName();
+        full += getCountVotes();
+        return full;
+    }
 }

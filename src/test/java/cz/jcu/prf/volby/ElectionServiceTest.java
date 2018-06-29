@@ -5,6 +5,7 @@
  */
 package cz.jcu.prf.volby;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -21,6 +22,21 @@ public class ElectionServiceTest {
     @Test
     public void testGetCanditates() {
         ElectionService es = new ElectionServiceMock();
+        List<Candidate> listCandid = es.getCanditates();
+        
+        List<Candidate> testedCandid = new ArrayList<Candidate>();
+        testedCandid.add(new Candidate(0, "Jana", "Čínsková", 3));
+        testedCandid.add(new Candidate(1, "Pavel", "Vodstrčil", 2));
+        testedCandid.add(new Candidate(2, "Tereza", "Králová", 1));
+        testedCandid.add(new Candidate(3, "Adrian", "Czarnomski", 0));
+        
+        for(int i = 0; i < listCandid.size(); i++){
+            assertEquals(listCandid.get(i).getAllAbout(), testedCandid.get(i).getAllAbout());
+        }
+        
+        testedCandid.set(0, new Candidate(0, "Halina", "Pawlovská", 0));
+        
+        assertNotEquals(listCandid.get(0).getAllAbout(), testedCandid.get(0).getAllAbout());
         
     }
 
@@ -29,6 +45,11 @@ public class ElectionServiceTest {
      */
     @Test
     public void testGetVotes() {
+        ElectionService es = new ElectionServiceMock();
+        
+        assertEquals(es.getVotes(0), 3);
+        
+        assertNotEquals(es.getVotes(0), 9);
     }
 
     /**
