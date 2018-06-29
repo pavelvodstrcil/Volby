@@ -37,7 +37,6 @@ public class ResultsWindow extends javax.swing.JFrame {
         initComponents();
         this.es = es;
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        electionTitle.setText(electionTitle.getText() + es.getCurrentVoteDate());
                 
         
         totalVotes = es.getTotalVotes();
@@ -123,7 +122,7 @@ public class ResultsWindow extends javax.swing.JFrame {
 
         electionTitle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         electionTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        electionTitle.setText("Prezidentské volby ");
+        electionTitle.setText("Prezidentské volby 2018");
         electionTitle.setToolTipText("");
         electionTitle.setName(""); // NOI18N
 

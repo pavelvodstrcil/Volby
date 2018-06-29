@@ -35,7 +35,7 @@ public class ElectionWindow extends javax.swing.JFrame {
     Person loggedPerson;
     LoginWindow lw;
     ElectionService esm;
-    ElectionDao ed;
+    private ElectionDao ed = ElectionDaoImplementaion.getInstance();
     /**
      * Creates new form ElectionWindow
      */
@@ -44,7 +44,6 @@ public class ElectionWindow extends javax.swing.JFrame {
         if (lw!=null)
             this.lw = lw;
         esm = new ElectionServiceImplementation();
-        ed = new ElectionDaoImplementaion();
         
          addWindowListener(exitListener); //REGISTER LISTENER
          

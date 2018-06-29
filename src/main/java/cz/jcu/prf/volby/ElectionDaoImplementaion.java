@@ -24,6 +24,18 @@ public class ElectionDaoImplementaion implements ElectionDao {
     private static Connection con = null;
     private static ResultSet rs = null;
     private static Statement st = null;
+    public static ElectionDaoImplementaion self = null;
+    
+    
+        private ElectionDaoImplementaion() {};
+    
+     public static ElectionDaoImplementaion getInstance() {
+        if (self == null) {
+            self = new ElectionDaoImplementaion();
+        }
+        return self;
+    }
+
 
     @Override
     public int verifyUser(String hashOP, String passwd) {

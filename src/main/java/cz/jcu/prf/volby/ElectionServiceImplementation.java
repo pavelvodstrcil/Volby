@@ -23,10 +23,9 @@ public class ElectionServiceImplementation implements ElectionService{
     // ID kandidáta a počet jeho hlasů
     private Map<Long, Integer> candidateVotes;
     private List<Candidate> candidates;
-    private ElectionDaoImplementaion ElectionDao;
-
+    private ElectionDao ElectionDao = ElectionDaoImplementaion.getInstance();
+    
     public ElectionServiceImplementation() {
-        ElectionDao = new ElectionDaoImplementaion();
         votedPersons = new TreeSet<>();
         candidateVotes = new HashMap<>();
         candidates = new ArrayList<>();
@@ -110,11 +109,6 @@ public class ElectionServiceImplementation implements ElectionService{
     @Override
     public String[] getCadidateNames(long candidateID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getCurrentVoteDate() {
-        return 0;
     }
     
 }

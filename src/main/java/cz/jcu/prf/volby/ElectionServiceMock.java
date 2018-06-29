@@ -87,9 +87,5 @@ public class ElectionServiceMock implements ElectionService{
         return candidates;  
     }
 
-    @Override
-    public int getCurrentVoteDate() {
-        return 2018;
-    }
     
 }
