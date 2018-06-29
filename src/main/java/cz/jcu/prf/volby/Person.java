@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.jcu.prf.volby;
 
 public class Person {
@@ -10,7 +5,11 @@ public class Person {
         private String firstName;
         private String lastName;
         private int countVotes;
-       
+       /**
+        * Testvací konstruktor osoby
+        * @param id ID z databáze
+        */    
+        
         public Person(long id){
             this.id = id;
         }
@@ -29,7 +28,7 @@ public class Person {
         }
         /**
          * getter ID osoby
-         * @return Vraci ID
+         * @return Vraci ID int
          */
         public long getID(){
             return this.id;
@@ -41,15 +40,24 @@ public class Person {
         public String getFullName(){
             return firstName + " " + lastName;
         }
-        
+        /**
+         * getter jména 
+         * @return string firstName
+         */
         public String getName(){
             return firstName;
         }
-        
+        /**
+         * getter prijmeni
+         * @return string lastName
+         */
         public  String getSurname(){
             return lastName;
         }
-        
+        /**
+         * Getter poštu hlasů
+         * @return int countVotes
+         */
         public int getCount(){
             return countVotes;
         }

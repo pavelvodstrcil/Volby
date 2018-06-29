@@ -1,23 +1,33 @@
 package cz.jcu.prf.volby;
 
-/**
- *
- * @author User
- */
 public class LoggedOne {
 
     private String hashOP;
     private String firstName;
     private String lastName;
 
+    /**
+     * Getter hashOP (nenihash, ale nemeneno)
+     *
+     * @return string hashOP
+     */
     public String getHashOP() {
         return hashOP;
     }
 
+    /**
+     * Getter jmeno
+     *
+     * @return string firstName
+     */
     public String getfirstName() {
         return firstName;
     }
 
+    /**
+     *Getter prijmeni
+     * @return string lastName
+     */
     public String getlastName() {
         return lastName;
     }
@@ -25,8 +35,8 @@ public class LoggedOne {
     /**
      * Objekt přihlášeného hlasujícího - konstruktor
      *
-     * @param array pro zjednodušení se předává pole stringů - rozseká se 
-     * a uloží do prom.
+     * @param array pro zjednodušení se předává pole stringů - rozseká se a
+     * uloží do prom.
      */
     public LoggedOne(String[] array) {
 
