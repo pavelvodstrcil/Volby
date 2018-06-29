@@ -35,7 +35,7 @@ public class ResultsWindow extends javax.swing.JFrame {
     
     public ResultsWindow(ElectionService es) {
         initComponents();
-        this.es = es;
+        this.es = new ElectionServiceImplementation();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 
         
